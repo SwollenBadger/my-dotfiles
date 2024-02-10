@@ -1,0 +1,100 @@
+@import "~/.config/rofi/shared/mocha.rasi"
+
+configuration {
+  modes: [drun];
+  show-icons: true;
+  display-drun: " ";
+  terminal: "foot";
+}
+
+* {
+  background-color: transparent;
+  font: "JetBrainsMono NFP 11";
+  color: @text;
+}
+
+window {
+  width: 28%;
+  fixed-height: true;
+  anchor: north;
+  location: north;
+  y-offset: 15%;
+  transparency: true;
+  border: 1px;
+  border-color: @charcoal;
+  border-radius: 16px;
+  background-color: @crust;
+}
+
+mode-switcher {
+  enabled: false;
+}
+
+mainbox {
+  children: [inputbar,listview];
+}
+
+inputbar {
+  children: [prompt,entry];
+  padding: 4% 1%;
+  spacing: 0px;
+  background-image: url("~/.config/rofi/imgs/doodle0.jpg", width);
+  border-radius: 12px 12px 12px 12px;
+  border: 0px 0px 8px 0px;
+  border-color: @mauve;
+  margin: 4px;
+}
+
+prompt {
+  background-color: @base;
+  padding: 0px 0px 0px 18px;
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+  border-radius: 14px 0px 0px 14px;
+  border: 1px 0px 1px 1px;
+  border-color: @surface2;
+  font: "JetBrainsMono NFP 14";
+}
+
+entry {
+  placeholder: "Search your app...";
+  placeholder-color: @overlay0;
+  background-color: @base;
+  vertical-align: 0.5;
+  padding: 18px 18px 18px 6px;
+  border-radius: 0px 14px 14px 0px;
+  border: 1px 1px 1px 0px;
+  border-color: @surface2;
+}
+
+listview {
+  margin: 8px;
+  padding: 6px 0px;
+  border-radius: 12px;
+  lines: 8;
+  require-input: false;
+  fixed-height: false;
+}
+
+element {
+  spacing: 12px;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+element selected {
+  background-color: @base;
+  color: @lavender;
+  border: 1px;
+  border-color: @charcoal;
+}
+
+element-icon {
+  size: 32px;
+}
+
+element-text {
+  vertical-align: 0.5;
+  text-color: inherit;
+}

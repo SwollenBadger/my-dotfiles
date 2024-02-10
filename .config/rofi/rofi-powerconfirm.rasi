@@ -1,0 +1,71 @@
+@import "~/.config/rofi/shared/mocha.rasi"
+
+configuration {
+  mode: [ dmenu ];
+  font: "JetBrainsMono NFP 11";
+}
+
+*{
+  background-color: transparent;
+  color: @text;
+}
+
+window {
+  width: 18%;
+  border-radius: 14px;
+  border: 1px;
+  border-color: @charcoal;
+  background-color: @crust;
+  transparency: true;
+  anchor: center;
+  location: north;
+  y-offset: 5%;
+  dynamic: true;
+  fixed-height: false;
+  children: [mainbox];
+}
+
+mainbox {
+  children: [message,listview];
+  padding: 6px;
+}
+
+message{
+  margin: 0px 0px 12px 0px;
+  border-radius: 10px;
+}
+
+textbox{
+  padding: 12px 18px 42px 18px;
+  text-color: #ffffff;
+  background-color: rgba(49, 50, 68,0.5);
+  transparency: true;
+  text-outline: true;
+  text-outline-color: #ffffff;
+}
+
+listview {
+  columns: 2;
+  dynamic: true;
+  flow: horizontal;
+  fixed-height: false;
+  lines: 1;
+  border-color: @pink;
+  border-radius: 12px;
+}
+
+element{
+  border-radius: 10px;
+  padding: 8px;
+  text-color: inherit;
+}
+
+element selected{
+  background-color: @pink;
+  text-color: @base;
+}
+
+element-text{
+  text-color: inherit;
+  horizontal-align: 0.5;
+}

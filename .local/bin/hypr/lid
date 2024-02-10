@@ -1,0 +1,31 @@
+#!/bin/sh
+
+lid_on(){
+ #monitors=$(hyprctl monitors -j | jq length)
+ #hyprctl keyword monitor "eDP-1,preferred,auto,1"
+ #hyprctl dpms on
+ 
+ hyprctl dispatch dpms on
+}
+
+lid_off(){
+ #monitors=$(hyprctl monitors -j | jq length)
+ #if (( "$monitors" > "1" )); then
+ #  hyprctl keyword monitor "eDP-1, disable"
+ #else
+ #  swaylock
+ #  hyprctl dpms off
+ #fi
+ 
+ hyprctl dispatch dpms off
+ swaylock
+}
+
+case "$1" in
+  "on")
+    lid_on;;
+  "off")
+    lid_off;;
+esac
+
+

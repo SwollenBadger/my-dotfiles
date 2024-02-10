@@ -1,0 +1,9 @@
+[user]
+  name = CreativeKittens
+  email = akbarsani.dev@gmail.com
+[init]
+  defaultBranch = main
+[credential]
+  helper = store
+[safe]
+  directory = *
