@@ -7,9 +7,9 @@ apply_wallpaper(){
 
   for t in ${monitors[@]}; do
     if [[ $# -eq 1  ]]; then
-      swww img -o $t --transition-type simple $(find ~/.wallpaper/{$1,include}/. -type f -not -path '*/\.*' | shuf -n1) 
+      swww img -o $t --transition-type simple $(find ~/.wallpaper/{$1,include}/. -type f ! -name ".*" | shuf -n1) 
     else
-      swww img -o $t --transition-type simple $(find ~/.wallpaper/. -type f -not -path '*/\.*' | shuf -n1) 
+      swww img -o $t --transition-type simple $(find ~/.wallpaper/. -type f ! -name ".*" | shuf -n1) 
     fi
   done
 }
