@@ -10,7 +10,7 @@ WHITE=37
 
 # Global var
 CURRENT_DIRECTORY=$(pwd)
-AURH="paru" # Change me to yay or other compatible aur helper
+AURH="yay" # Change me to yay or other compatible aur helper
 
 pman(){
   local pacman=$(which $AURH)

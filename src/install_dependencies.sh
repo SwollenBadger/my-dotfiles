@@ -15,7 +15,7 @@ dependencies(){
   
   # -- Dev package
   local PROG_LANG="rustup go python-pip fnm-bin pnpm bun-bin composer php-fpm"
-  local DEVTOOL="neovim visual-studio-code-bin git github-cli httpie-desktop-bin"
+  local DEVTOOL="neovim visual-studio-code-bin git github-cli"
 
   # -- Fonts package
   local MONO_EMOJI_FONTS="ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome"

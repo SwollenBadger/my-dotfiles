@@ -3,6 +3,9 @@ install_spotify(){
   if [[ ! "$SPT" =~ [Nn] ]]; then
     print_color $YELLOW "\nInstalling Spotify...\n"
 
+    sudo chmod a+wr /opt/spotify
+    sudo chmod a+wr /opt/spotify/Apps -R
+
     rm -rf $HOME/spicetify-catppuccin || true
     git clone https://github.com/catppuccin/spicetify $HOME/spicetify-catppuccin
 
