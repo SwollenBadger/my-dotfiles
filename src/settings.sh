@@ -1,19 +1,26 @@
 # -------------------------------- Settings -------------------------------- #
 setting_grub(){
-  GRUB_HANDLED=$(grep 'GRUB_THEME="/usr/share/grub/themes/catppuccin-mocha/theme.txt"' -a /etc/default/grub || true)
+  if [[ -e "/etc/default/grub" ]]; then
+    GRUB_HANDLED=$(grep 'GRUB_THEME="/usr/share/grub/themes/catppuccin-mocha-grub-theme/theme.txt"' -a /etc/default/grub || true)
 
-  if [[ -z $GRUB_HANDLED ]]; then
-    print_color $YELLOW "Setting up grub...\n"
+    if [[ -z $GRUB_HANDLED ]]; then
+      print_color $YELLOW "Setting up grub...\n"
 
-    sudo sed -i 's/^#\(GRUB_THEME="\)\/path\/to\/gfxtheme\"/\1\/usr\/share\/grub\/themes\/catppuccin-mocha\/theme.txt\"/' /etc/default/grub
-    sudo grub-mkconfig -o /boot/grub/grub.cfg
-    sleep 3
+      git clone https://github.com/catppuccin/grub.git $HOME/grub-catppuccin
+      sudo cp -r $HOME/grub-catppuccin/src/*mocha* /usr/share/grub/themes/
 
-    print_color $GREEN "Grub catppuccin has been applied\n"
-    echo -e
-  else
-    print_color $GREEN "Grub catppuccin has been applied\n"
-    echo -e
+      sudo sed -i 's/^#\(GRUB_THEME="\)\/path\/to\/gfxtheme\"/\1\/usr\/share\/grub\/themes\/catppuccin-mocha-grub-theme\/theme.txt\"/' /etc/default/grub
+      sudo grub-mkconfig -o /boot/grub/grub.cfg
+      sleep 3
+
+      print_color $GREEN "Grub catppuccin has been applied\n"
+      echo -e
+      
+      rm $HOME/grub-catppucin
+    else
+      print_color $GREEN "Grub catppuccin has been applied\n"
+      echo -e
+    fi
   fi
   sleep 3
 }
@@ -22,6 +29,11 @@ setting_sddm(){
   SDDM_HANDLED=$(grep "Theme" -a /etc/sddm.conf 2>/dev/null || true)
 
   if [[ -z $SDDM_HANDLED ]]; then
+    print_color $YELLOW "Setting up sddm...\n"
+
+    git clone https://github.com/catppuccin/sddm $HOME/sddm-catppuccin
+    sudo cp -r $HOME/sddm-catppuccin/src/*mocha* /usr/share/sddm/themes/
+
     echo -e "[Autologin]\nUser=$(whoami)\nSession=hyprland\n\n[Theme]\nCurrent=catppuccin-mocha" | sudo tee /etc/sddm.conf || true
     echo -e "\n"
     print_color $YELLOW "Enable SDDM service..."

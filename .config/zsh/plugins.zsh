@@ -29,7 +29,3 @@ zinit light-mode for \
 
 zinit ice wait'3' lucid
 zinit light zsh-users/zsh-history-substring-search
-
-zinit ice wait'2' lucid
-zinit light zdharma-continuum/history-search-multi-word
-

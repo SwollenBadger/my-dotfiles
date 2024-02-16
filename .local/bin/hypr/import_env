@@ -39,6 +39,7 @@ _envs=(
 	GRIM_DEFAULT_DIR
 	# ssh
 	SSH_AUTH_SOCK
+  PATH
 )
 
 case "$1" in

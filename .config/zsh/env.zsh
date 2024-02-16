@@ -1,10 +1,8 @@
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$HOME/.spicetify:$PATH"
 export PATH="$PNPM_HOME:$PATH"
 export PATH="$HOME/.scripts:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/opt/lampp/bin:$PATH"
 
 export TERM=xterm-256color foot
 export SUDO_PROMPT="Password: "
@@ -26,6 +24,10 @@ export XDG_DOCUMENTS_DIR="$HOME/Documents"
 export XDG_MUSIC_DIR="$HOME/Music"
 export XDG_PICTURES_DIR="$HOME/Pictures"
 export XDG_VIDEOS_DIR="$HOME/Videos"
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 
 # export FZF_DEFAULT_COMMAND='rg --hidden -l "" 2> /dev/null'
 export FZF_DEFAULT_OPTS=" \

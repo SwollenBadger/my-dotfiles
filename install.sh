@@ -97,6 +97,7 @@ install_aur_helper(){
 clean(){
   cd $HOME
   rm -rf $CURRENT_DIRECTORY
+  rm -rf $HOME/*.zip
 }
 
 # ---------------------- Main Install ---------------------- #

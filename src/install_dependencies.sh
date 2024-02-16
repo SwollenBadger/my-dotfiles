@@ -8,35 +8,29 @@ dependencies(){
   local COMPONENT="swww mako rofi-lbonn-wayland btop neofetch network-manager-applet thunar-archive-plugin swayidle swaylock-effects"
   local CORE_COMPONENT="ffmpegthumbnailer tumbler brightnessctl playerctl pamixer xdg-user-dirs gvfs"
   local LIB="colord libqalculate python-pyquery noise-suppression-for-voice imagemagick xorg-xhost rofi-calc rofi-emoji"
-  local UTILITY="tldr tmux tmux-plugin-manager fd fzf hyprpicker grimblast cliphist swappy udiskie file-roller flatpak"
-
+  local UTILITY="tldr tmux tmux-plugin-manager hyprpicker grimblast cliphist swappy udiskie file-roller flatpak"
   local APP="foot thunar mpv loupe gparted pavucontrol google-chrome firefox epiphany android-file-transfer okular"
-  local VIRT="quickemu qemu-full virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat libguestfs dmidecode"
+  local CMDLINE="eza jq fzf fd ripgrep bat"
   
   # -- Dev package
   local PROG_LANG="rustup go python-pip fnm-bin pnpm bun-bin composer php-fpm"
   local DEVTOOL="neovim visual-studio-code-bin git github-cli"
-
+  
   # -- Fonts package
   local MONO_EMOJI_FONTS="ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome"
   local LANGUAGE_FONTS="adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-cn-fonts"
   local LANGUAGE_SHERIF_FONTS="adobe-source-han-serif-jp-fonts adobe-source-han-serif-kr-fonts adobe-source-han-serif-cn-fonts"
-  local MS_FONTS="ttf-liberation ttf-tahoma ttf-roboto ttf-ms-fonts"
+  local MS_FONTS="ttf-tahoma ttf-ms-fonts"
 
   # -- Theme package
-  local THEME_PACKAGE="qt5ct qt6ct kvantum nwg-look-bin catppuccin-gtk-theme-mocha papirus-icon-theme"
-  
+  local THEME_PACKAGE="qt5ct qt6ct kvantum nwg-look-bin"
+
   # -- sddm package
-  local SDDM_PACKAGE="sddm-theme-catppuccin-git qt5-graphicaleffects qt5-svg qt5-quickcontrols2"
+  local SDDM_PACKAGE="qt5-graphicaleffects qt5-svg qt5-quickcontrols2"
 
   # -- OEM package
   if [[ "$CURRENT_HOSTNAME" == "thinkpad" ]]; then
     local OEM_PACKAGE="tp-battery-mode"
-  fi
-
-  # -- Grub package
-  if [[ -e "/etc/default/grub" ]]; then
-    local GRUB_PACKAGE="catppuccin-mocha-grub-theme-git"
   fi
 
   # -- Bluetooth package
@@ -64,15 +58,14 @@ dependencies(){
   pman -Sy --removemake --noconfirm --needed --sudoloop \
     $CORE \
     $COMPONENT \
-    $UTILITY \
+    $UTILITY 
 
   pman -Sy --removemake --noconfirm --needed --sudoloop \
     $APP \
-    $VIRT
   
   pman -Sy --removemake --noconfirm --needed --sudoloop \
     $CORE_COMPONENT \
-    $LIB \
+    $LIB 
 
   yes | pman -Sy ebtables
 
@@ -86,11 +79,11 @@ dependencies(){
     $THEME_PACKAGE \
     $SDDM_PACKAGE \
     $OEM_PACKAGE \
-    $GRUB_PACKAGE \
     $BLUETOOTH_PACAKGE \
     $DOCKER_PACKAGE \
     $IME_PACKAGE \
-    $SPOTIFY_PACKAGE  
+    $SPOTIFY_PACKAGE \
+    CMDLINE
 
   fnm install --lts
   rustup default stable

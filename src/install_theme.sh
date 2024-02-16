@@ -1,10 +1,35 @@
 # -------------------------------- Install Theme -------------------------------- #
 install_theme(){
   print_color $YELLOW "\nInstalling neccesarry theme...\n"
+  mkdir -p $HOME/.local/share/{themes,icons,fonts}
+
+  curl -s https://api.github.com/repos/googlefonts/roboto/releases/latest \
+    | grep -o '"browser_download_url": *"[^"]*"' \
+    | grep "roboto-android.zip" \
+    | cut -d '"' -f 4 \
+    | xargs wget -qO $HOME/system-font.zip
+  mkdir -p $HOME/.local/share/fonts/Roboto
+  unzip $HOME/system-font.zip "*.ttf" -d $HOME/.local/share/fonts/Roboto
+  fc-cache -vf
+
+  curl -s https://api.github.com/repos/catppuccin/gtk/releases/latest \
+  | grep "Catppuccin-Mocha-Standard-Pink*" \
+  | cut -d : -f 2,3 \
+  | tr -d \" \
+  | xargs wget -qO $HOME/gtk_theme.zip
+  unzip -o $HOME/gtk_theme.zip -d $HOME/.local/share/themes
+
+  wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.local/share/icons" sh
+
+  sudo flatpak override --filesystem=xdg-data/themes
+  sudo flatpak override --filesystem=xdg-data/icons
+  sudo flatpak override --filesystem=xdg-data/fonts
+  sudo flatpak override --filesystem=xdg-config/Kvantum:ro
+  sudo flatpak override --filesystem=xdg-config/kdeglobals:ro
 
   gsettings set org.gnome.desktop.interface gtk-theme $GTK_THEME
   gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-  gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+  gsettings set org.gnome.desktop.interface icon-theme 'ePapirus-Dark'
   gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
   gsettings set org.gnome.desktop.interface document-font-name 'Arial Medium 10'
   gsettings set org.gnome.desktop.interface font-name 'Roboto Medium 10'
@@ -20,7 +45,7 @@ install_theme(){
   cat <<EOF > "$settings_dir/settings.ini"
 [Settings]
 gtk-theme-name=Catppuccin-Mocha-Standard-Pink-Dark
-gtk-icon-theme-name=Papirus-Dark
+gtk-icon-theme-name=ePapirus-Dark
 gtk-font-name=Roboto Medium 10
 gtk-cursor-theme-name=Adwaita
 gtk-cursor-theme-size=26
@@ -38,13 +63,16 @@ gtk-application-prefer-dark-theme=1
 EOF
 
   cat <<EOF | tee "$settings_dir/bookmarks" > /dev/null
-file://$HOME/Documents
+file://$HOME/DocumentsCatppuccin-Mocha-Standard-Pink-Dark
 file://$HOME/Downloads
 file://$HOME/Pictures
 file://$HOME/Public
 file://$HOME/Templates
 file://$HOME/Videos
 EOF
+
+  sudo flatpak override --env=GTK_THEME="Catppuccin-Mocha-Standard-Pink-Dark"
+  sudo flatpak override --env=QT_STYLE_OVERRIDE=kvantum
 
   print_color $GREEN "Theme has been Applied\n"
   echo -e
