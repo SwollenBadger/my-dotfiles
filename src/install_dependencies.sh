@@ -10,7 +10,7 @@ dependencies(){
   local LIB="colord libqalculate python-pyquery noise-suppression-for-voice imagemagick xorg-xhost rofi-calc rofi-emoji"
   local UTILITY="tldr tmux tmux-plugin-manager hyprpicker grimblast cliphist swappy udiskie file-roller flatpak"
   local APP="foot thunar mpv loupe gparted pavucontrol google-chrome firefox epiphany android-file-transfer okular"
-  local CMDLINE="eza jq fzf fd ripgrep bat"
+  local CMDLINE="eza jq fzf fd ripgrep bat wget"
   
   # -- Dev package
   local PROG_LANG="rustup go python-pip fnm-bin pnpm bun-bin composer php-fpm"
@@ -108,14 +108,14 @@ dependencies_settings(){
     sudo systemctl enable tp-battery-mode.service --now
   fi
 
-  sudo usermod -aG input $(whoami)
-  sudo usermod -aG libvirt $(whoami)
+  # sudo usermod -aG input $(whoami)
+  # sudo usermod -aG libvirt $(whoami)
 
-  sudo sed -i 's/^#\(unix_sock_ro_perms = "0777"\)/\1/' /etc/libvirt/libvirtd.conf
-  sudo sed -i 's/^#\(unix_sock_group = "libvirt"\)/\1/' /etc/libvirt/libvirtd.conf
+  # sudo sed -i 's/^#\(unix_sock_ro_perms = "0777"\)/\1/' /etc/libvirt/libvirtd.conf
+  # sudo sed -i 's/^#\(unix_sock_group = "libvirt"\)/\1/' /etc/libvirt/libvirtd.conf
 
-  sudo systemctl enable libvirtd.service
-  sudo systemctl start libvirtd.service
+  # sudo systemctl enable libvirtd.service
+  # sudo systemctl start libvirtd.service
 }
 
 install_dependencies(){

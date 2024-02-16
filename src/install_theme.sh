@@ -2,24 +2,25 @@
 install_theme(){
   print_color $YELLOW "\nInstalling neccesarry theme...\n"
   mkdir -p $HOME/.local/share/{themes,icons,fonts}
+  mkdir -p $HOME/.local/share/fonts/Roboto 
 
   curl -s https://api.github.com/repos/googlefonts/roboto/releases/latest \
     | grep -o '"browser_download_url": *"[^"]*"' \
     | grep "roboto-android.zip" \
     | cut -d '"' -f 4 \
     | xargs wget -qO $HOME/system-font.zip
-  mkdir -p $HOME/.local/share/fonts/Roboto
-  unzip $HOME/system-font.zip "*.ttf" -d $HOME/.local/share/fonts/Roboto
-  fc-cache -vf
 
   curl -s https://api.github.com/repos/catppuccin/gtk/releases/latest \
-  | grep "Catppuccin-Mocha-Standard-Pink*" \
-  | cut -d : -f 2,3 \
-  | tr -d \" \
-  | xargs wget -qO $HOME/gtk_theme.zip
-  unzip -o $HOME/gtk_theme.zip -d $HOME/.local/share/themes
+    | grep -o '"browser_download_url": *"[^"]*"' \
+    | grep "Mocha*" \
+    | grep "Pink" \
+    | cut -d : -f 2,3 \
+    | xargs wget -qO $HOME/gtk_theme.zip
 
   wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.local/share/icons" sh
+
+  unzip -o $HOME/gtk_theme.zip -d $HOME/.local/share/themes
+  unzip -o $HOME/system-font.zip "*.ttf" -d $HOME/.local/share/fonts/Roboto
 
   sudo flatpak override --filesystem=xdg-data/themes
   sudo flatpak override --filesystem=xdg-data/icons
