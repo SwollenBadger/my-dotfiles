@@ -103,6 +103,7 @@ clean(){
 }
 
 # ---------------------- Main Install ---------------------- #
+sudo timedatectl set-ntp true
 install_aur_helper
 install_dependencies
 install_config
