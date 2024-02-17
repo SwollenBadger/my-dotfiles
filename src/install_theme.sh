@@ -64,7 +64,7 @@ gtk-application-prefer-dark-theme=1
 EOF
 
   cat <<EOF | tee "$settings_dir/bookmarks" > /dev/null
-file://$HOME/DocumentsCatppuccin-Mocha-Standard-Pink-Dark
+file://$HOME/Documents
 file://$HOME/Downloads
 file://$HOME/Pictures
 file://$HOME/Public
