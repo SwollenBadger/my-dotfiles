@@ -15,8 +15,6 @@ setting_grub(){
 
       print_color $GREEN "Grub catppuccin has been applied\n"
       echo -e
-      
-      rm $HOME/grub-catppucin
     else
       print_color $GREEN "Grub catppuccin has been applied\n"
       echo -e
