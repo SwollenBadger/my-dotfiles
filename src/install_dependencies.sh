@@ -29,11 +29,6 @@ dependencies(){
     local OEM_PACKAGE="tp-battery-mode"
   fi
 
-  # -- Bluetooth package
-  if [[ ! "$BTH" =~ [Nn] ]]; then
-    local BLUETOOTH_PACAKGE="bluez bluez-utils blueman"
-  fi
-
   # -- Docker package
   if [[ ! "$DOCK" =~ [Nn] ]]; then
     local DOCKER_PACKAGE="docker docker-compose"
