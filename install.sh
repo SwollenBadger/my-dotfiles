@@ -12,7 +12,6 @@ source "./src/install_theme.sh"
 source "./src/settings.sh"
 
 # ---------------------- Optional Source Install ---------------------- #
-source "./src/optionals/install_bluetooth.sh"
 source "./src/optionals/install_spotify.sh"
 source "./src/optionals/install_docker.sh"
 source "./src/optionals/install_input_method.sh"
