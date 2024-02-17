@@ -39,11 +39,6 @@ if [[ "$PROC" =~ [Nn] ]];then
 fi
 
 echo -e 
-print_color $MAGENTA "Install Bluetooth using bluez\n"
-print_color $MAGENTA "Proceed to install? (yes/no) "
-read -n1 -rep '' BTH
-
-echo -e 
 print_color $MAGENTA "Install Input method contain fcitx5-hangul fcitx5-mozc fcitx5-kkc by default\n"
 print_color $MAGENTA "Proceed to install? (yes/no) "
 read -n1 -rep '' IME
@@ -111,7 +106,6 @@ install_theme
 settings
 
 # ---------------------- Optional Install ---------------------- #
-install_bluetooth
 install_input_method
 install_spotify
 install_docker
