@@ -9,12 +9,8 @@ dependencies(){
   local CORE_COMPONENT="ffmpegthumbnailer tumbler brightnessctl playerctl pamixer xdg-user-dirs gvfs"
   local LIB="colord libqalculate python-pyquery noise-suppression-for-voice imagemagick xorg-xhost rofi-calc rofi-emoji"
   local UTILITY="tldr tmux tmux-plugin-manager hyprpicker grimblast cliphist swappy udiskie file-roller flatpak"
-  local APP="foot thunar mpv loupe gparted pavucontrol google-chrome firefox epiphany android-file-transfer okular"
-  local CMDLINE="eza jq fzf fd ripgrep bat wget"
-  
-  # -- Dev package
-  local PROG_LANG="rustup go python-pip fnm-bin pnpm bun-bin composer php-fpm"
-  local DEVTOOL="neovim visual-studio-code-bin git github-cli"
+  local APP="foot thunar mpv loupe gparted pavucontrol google-chrome firefox epiphany android-file-transfer okular neovim visual-studio-code-bin"
+  local CMDLINE="eza jq fzf fd ripgrep bat wget git github-cli fnm-bin"
   
   # -- Fonts package
   local MONO_EMOJI_FONTS="ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome"
@@ -58,24 +54,16 @@ dependencies(){
   pman -Sy --removemake --noconfirm --needed --sudoloop \
     $CORE \
     $COMPONENT \
-    $UTILITY 
-
-  pman -Sy --removemake --noconfirm --needed --sudoloop \
+    $UTILITY \
     $APP \
   
   pman -Sy --removemake --noconfirm --needed --sudoloop \
     $CORE_COMPONENT \
-    $LIB 
-
-  yes | pman -Sy ebtables
-
-  pman -Sy --removemake --noconfirm --needed --sudoloop \
+    $LIB \
     $MONO_EMOJI_FONTS \
     $LANGUAGE_FONTS \
     $LANGUAGE_SHERIF_FONTS \
     $MS_FONTS \
-    $PROG_LANG \
-    $DEVTOOL \
     $THEME_PACKAGE \
     $SDDM_PACKAGE \
     $OEM_PACKAGE \
@@ -86,7 +74,6 @@ dependencies(){
     $CMDLINE
 
   fnm install --lts
-  rustup default stable
 }
 
 dependencies_settings(){
@@ -107,6 +94,15 @@ dependencies_settings(){
     echo -e "START_THRESHOLD=75\nSTOP_THRESHOLD=80 " | sudo tee /etc/tp-battery-mode.conf
     sudo systemctl enable tp-battery-mode.service --now
   fi
+
+  sudo flatpak override --filesystem=xdg-data/themes
+  sudo flatpak override --filesystem=xdg-data/icons
+  sudo flatpak override --filesystem=xdg-data/fonts
+  sudo flatpak override --filesystem=xdg-config/Kvantum:ro
+  sudo flatpak override --filesystem=xdg-config/kdeglobals:ro
+
+  sudo flatpak override --env=GTK_THEME="Catppuccin-Mocha-Standard-Pink-Dark"
+  sudo flatpak override --env=QT_STYLE_OVERRIDE=kvantum
 
   # sudo usermod -aG input $(whoami)
   # sudo usermod -aG libvirt $(whoami)

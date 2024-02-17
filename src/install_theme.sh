@@ -22,12 +22,6 @@ install_theme(){
   unzip -o $HOME/gtk_theme.zip -d $HOME/.local/share/themes
   unzip -o $HOME/system-font.zip "*.ttf" -d $HOME/.local/share/fonts/Roboto
 
-  sudo flatpak override --filesystem=xdg-data/themes
-  sudo flatpak override --filesystem=xdg-data/icons
-  sudo flatpak override --filesystem=xdg-data/fonts
-  sudo flatpak override --filesystem=xdg-config/Kvantum:ro
-  sudo flatpak override --filesystem=xdg-config/kdeglobals:ro
-
   gsettings set org.gnome.desktop.interface gtk-theme $GTK_THEME
   gsettings set org.gnome.desktop.interface color-scheme prefer-dark
   gsettings set org.gnome.desktop.interface icon-theme 'ePapirus-Dark'
@@ -71,9 +65,6 @@ file://$HOME/Public
 file://$HOME/Templates
 file://$HOME/Videos
 EOF
-
-  sudo flatpak override --env=GTK_THEME="Catppuccin-Mocha-Standard-Pink-Dark"
-  sudo flatpak override --env=QT_STYLE_OVERRIDE=kvantum
 
   print_color $GREEN "Theme has been Applied\n"
   echo -e
