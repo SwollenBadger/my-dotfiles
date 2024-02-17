@@ -83,7 +83,7 @@ dependencies(){
     $DOCKER_PACKAGE \
     $IME_PACKAGE \
     $SPOTIFY_PACKAGE \
-    CMDLINE
+    $CMDLINE
 
   fnm install --lts
   rustup default stable
