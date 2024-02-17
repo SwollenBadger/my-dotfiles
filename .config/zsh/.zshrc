@@ -6,6 +6,5 @@ done <<- EOF
 	options
 	aliases
   plugins
-  programs
   prompt
 EOF
