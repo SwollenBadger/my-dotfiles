@@ -99,14 +99,7 @@ dependencies_settings(){
   sudo flatpak override --env=GTK_THEME="Catppuccin-Mocha-Standard-Pink-Dark"
   sudo flatpak override --env=QT_STYLE_OVERRIDE=kvantum
 
-  # sudo usermod -aG input $(whoami)
-  # sudo usermod -aG libvirt $(whoami)
-
-  # sudo sed -i 's/^#\(unix_sock_ro_perms = "0777"\)/\1/' /etc/libvirt/libvirtd.conf
-  # sudo sed -i 's/^#\(unix_sock_group = "libvirt"\)/\1/' /etc/libvirt/libvirtd.conf
-
-  # sudo systemctl enable libvirtd.service
-  # sudo systemctl start libvirtd.service
+  sudo usermod -aG input $(whoami)
 }
 
 install_dependencies(){
