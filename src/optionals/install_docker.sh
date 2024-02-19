@@ -11,15 +11,17 @@ install_docker(){
 
       sudo rm -rf  $LOC_DOC
 
+      sudo mkdir -p $LOC_DOC
+      
+      echo -e "{\n\"data-root\": \"$ROOT_DOC\"\n}" |     sudo tee $LOC_DOC/daemon.json
+
       if [[ ! "$DKRCM" =~ [Nn] ]]; then
         echo -e "Create directory for docker\n"
         sudo mkdir -p $ROOT_DOC
       fi
     fi
 
-    sudo mkdir -p $LOC_DOC
-    echo -e "{\n\"data-root\": \"$ROOT_DOC\"\n}" | sudo tee $LOC_DOC/daemon.json
-
+    
     sudo systemctl enable docker --now
 
     echo -e
