@@ -60,7 +60,7 @@ if [[ ! "$DOCK" =~ [Nn] ]]; then
     read -p "Enter your docker root path: " ROOT_DOC 
   fi
 
-  if [ ! -d "$ROOT_DOC" ]; then
+  if [[ ! "$DCKPTH" =~ [Nn] ]] && [[ ! -d "$ROOT_DOC" ]]; then
     print_color $CYAN "Path that you enter doesn't exist, would you like to create the folder? (yes/no) "
     read -n1 -rep "" DKRCM
   fi
