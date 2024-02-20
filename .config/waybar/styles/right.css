@@ -60,7 +60,7 @@
 
 /* ----------- Swayidle ----------- */
 #custom-swayidle {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   padding-right: 0.5rem;
   color: alpha(@flamingo, 0.5);
 }
