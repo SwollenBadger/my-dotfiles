@@ -180,7 +180,7 @@
     "tooltip": false,
   },
   "clock": {
-    "format": "{:%I:%M:%S %p} ",
+    "format": "{:%I:%M}",
     "tooltip-format": "{calendar}",
     "interval": 1,
     "calendar": {
