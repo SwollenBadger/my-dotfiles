@@ -2,7 +2,12 @@
   // -------- Network -------- //
   "group/connection": {
     "orientation": "horizontal",
-    "modules": ["network", "bluetooth", "custom/connection-separator"],
+    "modules": [
+      "network",
+      "bluetooth",
+      "custom/swayidle",
+      "custom/connection-separator",
+    ],
   },
   // -------- Bluetooth -------- //
   "bluetooth": {

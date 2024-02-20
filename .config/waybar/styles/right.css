@@ -1,12 +1,12 @@
 /* ----------- Network ----------- */
 #network {
-  color: @rosewater;
+  color: @flamingo;
   font-size: 0.75rem;
   padding-right: 0.5rem;
 }
 
 #network.disconnected {
-  color: alpha(@rosewater, 0.5);
+  color: alpha(@flamingo, 0.5);
 }
 
 /* ----------- Bluetooth ----------- */
@@ -22,7 +22,7 @@
 
 #bluetooth {
   padding-right: 0.5rem;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
 }
 
 #bluetooth.on {
@@ -58,24 +58,24 @@
   animation-duration: 0.3s;
 }
 
+/* ----------- Swayidle ----------- */
+#custom-swayidle {
+  font-size: 1.1rem;
+  padding-right: 0.5rem;
+  color: alpha(@flamingo, 0.5);
+}
+
+#custom-swayidle.wake {
+  font-size: 1.1rem;
+  padding-right: 0.5rem;
+  color: @flamingo;
+}
+
 #custom-connection-separator {
   margin-left: 0.3rem;
   margin-right: 0.8rem;
   color: alpha(@rosewater, 0.8);
   font-size: 1rem;
-}
-
-/* ----------- Audio ----------- */
-#custom-swayidle {
-  font-size: 1.3rem;
-  padding-right: 0.5rem;
-  color: alpha(@green, 0.5);
-}
-
-#custom-swayidle.wake {
-  font-size: 1.3rem;
-  padding-right: 0.5rem;
-  color: @green;
 }
 
 #custom-audioicon {
