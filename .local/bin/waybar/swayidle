@@ -3,7 +3,7 @@
 swayidle_status=$(pidof swayidle)
 
 icon(){
-  if [[ -n "$swayidle_status" ]]; then icon="󰈉"; else icon='󰈈'; fi
+  if [[ -n "$swayidle_status" ]]; then icon="󰈈"; else icon='󰈈'; fi
   if [[ -n "$swayidle_status" ]]; then class='["swayidle"]'; else class='["swayidle","wake"]'; fi
 
   printf '{"text": "%s", "class": %s}' "$icon" "$class" | jq --unbuffered --compact-output
