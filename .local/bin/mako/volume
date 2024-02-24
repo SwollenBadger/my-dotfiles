@@ -98,7 +98,7 @@ toggle_mic() {
 	if [ "$(pamixer --default-source --get-mute)" == "false" ]; then
 		pamixer --default-source -m && notify-send -a "mic-osd" -t 800 -h string:x-canonical-private-synchronous:sys-notify -u low -i "$iDIR/mic/muted.png" "Switch Mic Volume" "Mute"
 	elif [ "$(pamixer --default-source --get-mute)" == "true" ]; then
-		pamixer --default-source -u && notify-send -a "mic-osd" -t 800 -h string:x-canonical-private-synchronous:sys-notify -u low -i "$iDIR/mic/muted.png" "Switch Mic Volume" "Unmute"
+		pamixer --default-source -u && notify-send -a "mic-osd" -t 800 -h string:x-canonical-private-synchronous:sys-notify -u low -i "$(get_mic_icon)" "Switch Mic Volume" "Unmute"
 	fi
 }
 
