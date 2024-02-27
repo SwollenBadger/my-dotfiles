@@ -8,14 +8,14 @@ install_theme(){
     | grep -o '"browser_download_url": *"[^"]*"' \
     | grep "roboto-android.zip" \
     | cut -d '"' -f 4 \
-    | xargs wget -q $HOME/system-font.zip
+    | xargs wget -O $HOME/system-font.zip
 
   curl -s https://api.github.com/repos/catppuccin/gtk/releases/latest \
     | grep -o '"browser_download_url": *"[^"]*"' \
     | grep "Mocha*" \
     | grep "Pink" \
     | cut -d : -f 2,3 \
-    | xargs wget -q $HOME/gtk_theme.zip
+    | xargs wget -O $HOME/gtk_theme.zip
 
   wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.local/share/icons" sh
 
