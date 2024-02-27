@@ -3,14 +3,17 @@ dependencies(){
   print_color $YELLOW "Installing dependencies...\n"
   sleep 3
 
+  # -- Dev util package
+  local DEV_TOOLS="pnpm composer fnm-bin rustup git github-cli neovim neovim visual-studio-code-bin"
+
   # -- Main package
   local CORE="hyprland waybar xdg-desktop-portal-hyprland zsh qt5-wayland qt6-wayland polkit-gnome sddm-git"
   local COMPONENT="swww mako rofi-lbonn-wayland btop neofetch network-manager-applet thunar-archive-plugin swayidle swaylock-effects"
   local CORE_COMPONENT="ffmpegthumbnailer tumbler brightnessctl playerctl pamixer xdg-user-dirs gvfs"
   local LIB="colord libqalculate python-pyquery noise-suppression-for-voice imagemagick xorg-xhost rofi-calc rofi-emoji"
   local UTILITY="tldr tmux tmux-plugin-manager hyprpicker grimblast cliphist swappy udiskie file-roller flatpak"
-  local APP="foot thunar mpv loupe gparted pavucontrol google-chrome firefox epiphany android-file-transfer okular neovim visual-studio-code-bin"
-  local CMDLINE="eza jq fzf fd ripgrep bat wget git github-cli fnm-bin"
+  local APP="foot thunar mpv loupe gparted pavucontrol google-chrome firefox epiphany android-file-transfer okular"
+  local CMDLINE="eza jq fzf fd ripgrep bat wget"
   
   # -- Fonts package
   local MONO_EMOJI_FONTS="ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome"
@@ -41,11 +44,13 @@ dependencies(){
 
   # -- Spotify package
   if [[ ! "$SPT" =~ [Nn] ]]; then
-    # curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | gpg --import -
     local SPOTIFY_PACKAGE="spotify spicetify-cli"
   fi
 
   # Must install one by one to avoid conflict
+  pman -Sy --removemake --noconfirm --needed --sudoloop \
+    $DEV_TOOLS
+
   pman -Sy --removemake --noconfirm --needed --sudoloop \
     $CORE \
     $COMPONENT \
@@ -67,12 +72,13 @@ dependencies(){
     $IME_PACKAGE \
     $SPOTIFY_PACKAGE \
     $CMDLINE
-
-  fnm install --lts
 }
 
 dependencies_settings(){
   unset BROWSER
+
+  fnm install --lts
+  rustup default stable
 
   xdg-user-dirs-update --force
   xdg-settings set default-web-browser firefox.desktop
