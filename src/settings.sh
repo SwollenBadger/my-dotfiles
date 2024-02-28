@@ -34,7 +34,7 @@ setting_sddm(){
 
     echo -e "[Autologin]\nUser=$(whoami)\nSession=hyprland\n\n[Theme]\nCurrent=catppuccin-mocha" | sudo tee /etc/sddm.conf || true
     echo -e "\n"
-    print_color $YELLOW "Enable SDDM service..."
+    print_color $YELLOW "Enable SDDM service...\n"
 
     print_color $CYAN "SDDM catppuccin Has Been set\n"
     echo -e
