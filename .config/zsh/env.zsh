@@ -1,8 +1,18 @@
+# Fnm
+eval "$(fnm env --use-on-cd)"
+
+# Pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-export PATH="$HOME/.scripts:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Ocaml
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 export TERM=xterm-256color foot
 export SUDO_PROMPT="Password: "
@@ -36,4 +46,3 @@ export FZF_DEFAULT_OPTS=" \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
 --prompt '󰭎 ' --pointer ' λ' --layout=reverse --border horizontal --height 40"
 
-eval "$(fnm env --use-on-cd)"
