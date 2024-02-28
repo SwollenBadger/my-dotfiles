@@ -79,6 +79,7 @@ dependencies_settings(){
 
   fnm install --lts
   rustup default stable
+  opam init -y
 
   xdg-user-dirs-update --force
   xdg-settings set default-web-browser firefox.desktop
