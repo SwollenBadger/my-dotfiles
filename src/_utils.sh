@@ -12,27 +12,27 @@ WHITE=37
 CURRENT_DIRECTORY=$(pwd)
 AURH="yay" # Change me to yay or other compatible aur helper
 
-pman(){
-  local pacman=$(which $AURH)
-  $pacman "$@"
+function pman() {
+    local pacman=$(which $AURH)
+    $pacman "$@"
 }
 
-print_color() {
-  local color="$1"
-  local text="$2"
-  local reset="\e[0m"  # Reset color
+function print_color() {
+    local color="$1"
+    local text="$2"
+    local reset="\e[0m"  # Reset color
 
-  printf "\e[%sm%b$reset" "$color" "$text" 
+    printf "\e[%sm%b$reset" "$color" "$text"
 }
 
-package_exist() {
-  package_name=$1
+function package_exist() {
+    package_name=$1
 
-  # Use pacman to check if the package is installed
-  if pacman -Qi "$package_name" &> /dev/null; then
-    return 0
-  else
-    return 1
-  fi
+    # Use pacman to check if the package is installed
+    if pacman -Qi "$package_name" &> /dev/null; then
+        return 0
+    else
+        return 1
+    fi
 }
 

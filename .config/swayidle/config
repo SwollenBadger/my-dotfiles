@@ -1,4 +1,0 @@
-timeout 600 'hyprctl dispatch dpms off;pamixer -m' resume 'hyprctl dispatch dpms on; pamixer -u' 
-timeout 900 "swaylock"
-timeout 18000 'systemctl suspend'
-before-sleep 'hyprctl dispatch dpms on'

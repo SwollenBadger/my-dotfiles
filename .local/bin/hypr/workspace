@@ -1,48 +1,48 @@
 #!/bin/bash
 
-move_currentworkspace_to_monitor(){
-  ACTIVE_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .x')
+function move_currentworkspace_to_monitor() {
+    ACTIVE_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .x')
 
-  if [[ "$1" != "left" && "$1" != "right" ]]; then
-    echo "Invalid position"
-    exit 0
-  fi
+    if [[ "$1" != "left" && "$1" != "right" ]]; then
+        echo "Invalid position"
+        exit 0
+    fi
 
-  if [ "$1" == "left" ]; then
-    monitor_position_operator="<";
-    local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id " | tail -n 1)
-  else 
-    monitor_position_operator=">";
-    local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id " | head -n 1)
-  fi
+    if [ "$1" == "left" ]; then
+        monitor_position_operator="<";
+        local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id " | tail -n 1)
+    else
+        monitor_position_operator=">";
+        local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id " | head -n 1)
+    fi
 
-  echo $(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id ")
+    echo $(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id ")
 
-  hyprctl dispatch movecurrentworkspacetomonitor $next_active_monitor 
-  hyprctl dispatch focusmonitor $next_active_monitor 
+    hyprctl dispatch movecurrentworkspacetomonitor $next_active_monitor
+    hyprctl dispatch focusmonitor $next_active_monitor
 }
 
-tidy_workspace(){
-  ACTIVE_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .x')
-  RIGHT_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.x > 0) | .id')
-  local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x > $ACTIVE_MONITOR) | .id " | head -n 1)
+function tidy_workspace() {
+    ACTIVE_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .x')
+    RIGHT_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.x > 0) | .id')
+    local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x > $ACTIVE_MONITOR) | .id " | head -n 1)
 
-  hyprctl dispatch moveworkspacetomonitor 2 $RIGHT_MONITOR
-  hyprctl dispatch moveworkspacetomonitor 3 $RIGHT_MONITOR
-  hyprctl dispatch moveworkspacetomonitor 4 $RIGHT_MONITOR
-  hyprctl dispatch moveworkspacetomonitor 5 $RIGHT_MONITOR
-  hyprctl dispatch moveworkspacetomonitor 6 $RIGHT_MONITOR
-  hyprctl dispatch moveworkspacetomonitor 7 $RIGHT_MONITOR
-  hyprctl dispatch moveworkspacetomonitor 8 $RIGHT_MONITOR
-  hyprctl dispatch moveworkspacetomonitor 9 $RIGHT_MONITOR
-  hyprctl dispatch moveworkspacetomonitor 10 $RIGHT_MONITOR
+    hyprctl dispatch moveworkspacetomonitor 2 $RIGHT_MONITOR
+    hyprctl dispatch moveworkspacetomonitor 3 $RIGHT_MONITOR
+    hyprctl dispatch moveworkspacetomonitor 4 $RIGHT_MONITOR
+    hyprctl dispatch moveworkspacetomonitor 5 $RIGHT_MONITOR
+    hyprctl dispatch moveworkspacetomonitor 6 $RIGHT_MONITOR
+    hyprctl dispatch moveworkspacetomonitor 7 $RIGHT_MONITOR
+    hyprctl dispatch moveworkspacetomonitor 8 $RIGHT_MONITOR
+    hyprctl dispatch moveworkspacetomonitor 9 $RIGHT_MONITOR
+    hyprctl dispatch moveworkspacetomonitor 10 $RIGHT_MONITOR
 }
 
 case "$1" in
-  "tidy_workspace")
-    tidy_workspace
-    ;;
-  "move_currentworkspace_to_monitor")
-    move_currentworkspace_to_monitor $2
-    ;;
+    "tidy_workspace")
+        tidy_workspace
+        ;;
+    "move_currentworkspace_to_monitor")
+        move_currentworkspace_to_monitor $2
+        ;;
 esac

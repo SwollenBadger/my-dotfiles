@@ -1,0 +1,29 @@
+#!/bin/sh
+
+idle_status=$(pidof hypridle)
+
+function icon() {
+    if [[ -n "$idle_status" ]]; then icon="󰈈"; else icon='󰈈'; fi
+    if [[ -n "$idle_status" ]]; then class='["idle"]'; else class='["idle","wake"]'; fi
+
+    printf '{"text": "%s", "class": %s}' "$icon" "$class" | jq --unbuffered --compact-output
+}
+
+function toggle() {
+    if [[ -n "$idle_status" ]]; then
+        notify-send -a "idle" -h string:x-canonical-private-synchronous:sys-notify "Idle turned off" "Device will not sleep"
+        pkill hypridle
+    else
+        notify-send -a "idle" -h string:x-canonical-private-synchronous:sys-notify "Idle turned on" "Device will sleep"
+        hypridle
+    fi
+}
+
+case "$1" in
+    "icon")
+        icon
+        ;;
+    "toggle")
+        toggle
+        ;;
+esac

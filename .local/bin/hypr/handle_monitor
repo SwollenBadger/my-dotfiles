@@ -1,27 +1,28 @@
 #!/bin/sh
 
-focus(){
-  ACTIVE_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .x')
+function focus() {
+    ACTIVE_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .x')
 
-  if [ "$1" == "left" ]; then
-    monitor_position_operator="<";
-    local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id " | tail -n 1)
-  else 
-    monitor_position_operator=">";
-    local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id " | head -n 1)
-  fi
+    if [ "$1" == "left" ]; then
+        monitor_position_operator="<";
+        local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id " | tail -n 1)
+    else
+        monitor_position_operator=">";
+        local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id " | head -n 1)
+    fi
 
-  hyprctl dispatch focusmonitor $next_active_monitor 
+    hyprctl dispatch focusmonitor $next_active_monitor
 }
 
-handle() {
-  case $1 in monitoradded*)
-    ~/.scripts/wallpaper.sh cycle;
-  esac
-  socat - "UNIX-CONNECT:/tmp/hypr/${HYPRLAND_INSTANCE_SIGNATURE}/.socket2.sock" | while read -r line; do echo $line; handle "$line"; done
+function handle() {
+case $1 in monitoradded*)
+            ~/.scripts/wallpaper.sh cycle;
+    esac
+
+    socat - "UNIX-CONNECT:/tmp/hypr/${HYPRLAND_INSTANCE_SIGNATURE}/.socket2.sock" | while read -r line; do echo $line; handle "$line"; done
 }
 
 case "$1" in
-  "handle") handle;;
-  "focus") focus $2;;
+    "handle") handle ;;
+    "focus") focus $2 ;;
 esac

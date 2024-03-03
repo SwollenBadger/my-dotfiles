@@ -5,7 +5,7 @@
     "modules": [
       "network",
       "bluetooth",
-      "custom/swayidle",
+      "custom/idle",
       "custom/connection-separator",
     ],
   },
@@ -40,14 +40,14 @@
     "format": "~",
     "tooltip": false,
   },
-  "custom/swayidle": {
+  "custom/idle": {
     "format": "{}",
     "tooltip": false,
     "return-type": "json",
     "signal": 89,
     "interval": 1,
-    "exec": "~/.local/bin/waybar/swayidle icon",
-    "on-click": "~/.local/bin/waybar/swayidle toggle",
+    "exec": "~/.local/bin/waybar/idle icon",
+    "on-click": "~/.local/bin/waybar/idle toggle",
   },
   // -------- Audio -------- //
   "group/audio": {

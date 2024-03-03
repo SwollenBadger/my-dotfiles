@@ -1,69 +1,69 @@
 # -------------------------------- Settings -------------------------------- #
-setting_grub(){
-  if [[ -e "/etc/default/grub" ]]; then
-    GRUB_HANDLED=$(grep 'GRUB_THEME="/usr/share/grub/themes/catppuccin-mocha-grub-theme/theme.txt"' -a /etc/default/grub || true)
+function setting_grub() {
+    if [[ -e "/etc/default/grub" ]]; then
+        GRUB_HANDLED=$(grep 'GRUB_THEME="/usr/share/grub/themes/catppuccin-mocha-grub-theme/theme.txt"' -a /etc/default/grub || true)
 
-    if [[ -z $GRUB_HANDLED ]]; then
-      print_color $YELLOW "Setting up grub...\n"
+        if [[ -z $GRUB_HANDLED ]]; then
+            print_color $YELLOW "Setting up grub...\n"
 
-      git clone https://github.com/catppuccin/grub.git $HOME/grub-catppuccin
-      sudo cp -r $HOME/grub-catppuccin/src/*mocha* /usr/share/grub/themes/
+            git clone https://github.com/catppuccin/grub.git $HOME/grub-catppuccin
+            sudo cp -r $HOME/grub-catppuccin/src/*mocha* /usr/share/grub/themes/
 
-      sudo sed -i 's/^#\(GRUB_THEME="\)\/path\/to\/gfxtheme\"/\1\/usr\/share\/grub\/themes\/catppuccin-mocha-grub-theme\/theme.txt\"/' /etc/default/grub
-      sudo grub-mkconfig -o /boot/grub/grub.cfg
-      sleep 3
+            sudo sed -i 's/^#\(GRUB_THEME="\)\/path\/to\/gfxtheme\"/\1\/usr\/share\/grub\/themes\/catppuccin-mocha-grub-theme\/theme.txt\"/' /etc/default/grub
+            sudo grub-mkconfig -o /boot/grub/grub.cfg
+            sleep 3
 
-      print_color $GREEN "Grub catppuccin has been applied\n"
-      echo -e
-    else
-      print_color $GREEN "Grub catppuccin has been applied\n"
-      echo -e
+            print_color $GREEN "Grub catppuccin has been applied\n"
+            echo -e
+        else
+            print_color $GREEN "Grub catppuccin has been applied\n"
+            echo -e
+        fi
     fi
-  fi
-  sleep 3
+    sleep 3
 }
 
-setting_sddm(){
-  SDDM_HANDLED=$(grep "Theme" -a /etc/sddm.conf 2>/dev/null || true)
+function setting_sddm() {
+    SDDM_HANDLED=$(grep "Theme" -a /etc/sddm.conf 2>/dev/null || true)
 
-  if [[ -z $SDDM_HANDLED ]]; then
-    print_color $YELLOW "Setting up sddm...\n"
+    if [[ -z $SDDM_HANDLED ]]; then
+        print_color $YELLOW "Setting up sddm...\n"
 
-    git clone https://github.com/catppuccin/sddm $HOME/sddm-catppuccin
-    sudo cp -r $HOME/sddm-catppuccin/src/*mocha* /usr/share/sddm/themes/
+        git clone https://github.com/catppuccin/sddm $HOME/sddm-catppuccin
+        sudo cp -r $HOME/sddm-catppuccin/src/*mocha* /usr/share/sddm/themes/
 
-    echo -e "[Autologin]\nUser=$(whoami)\nSession=hyprland\n\n[Theme]\nCurrent=catppuccin-mocha" | sudo tee /etc/sddm.conf || true
-    echo -e "\n"
-    print_color $YELLOW "Enable SDDM service...\n"
+        echo -e "[Autologin]\nUser=$(whoami)\nSession=hyprland\n\n[Theme]\nCurrent=catppuccin-mocha" | sudo tee /etc/sddm.conf || true
+        echo -e "\n"
+        print_color $YELLOW "Enable SDDM service...\n"
 
-    print_color $CYAN "SDDM catppuccin Has Been set\n"
-    echo -e
-  else
-    print_color $GREEN "SDDM catppuccin Has Been set\n"
-    echo -e
-  fi
+        print_color $CYAN "SDDM catppuccin Has Been set\n"
+        echo -e
+    else
+        print_color $GREEN "SDDM catppuccin Has Been set\n"
+        echo -e
+    fi
 
-  sudo systemctl enable sddm
-  sleep 3
+    sudo systemctl enable sddm
+    sleep 3
 }
 
-settings(){
-  if [[ -e "/etc/default/grub" ]]; then
-    setting_grub
-  fi
-  setting_sddm
+function settings() {
+    if [[ -e "/etc/default/grub" ]]; then
+        setting_grub
+    fi
+    setting_sddm
 
-  sudo brightnessctl set 15%
+    sudo brightnessctl set 15%
 
-  pamixer --get-default-sink || true
+    pamixer --get-default-sink || true
 
-  sleep 5
-  pamixer --set-volume 35 || true
-  pamixer --default-source --set-volume 35 || true
-  pamixer --default-source -m || true
+    sleep 5
+    pamixer --set-volume 35 || true
+    pamixer --default-source --set-volume 35 || true
+    pamixer --default-source -m || true
 
-  sed -i "s/^alias[[:space:]]pman=.*$/alias pman='$AURH'/" ~/.config/zsh/aliases.zsh
+    sed -i "s/^alias[[:space:]]pman=.*$/alias pman='$AURH'/" ~/.config/zsh/aliases.zsh
 
-  sleep 3
-  clear
+    sleep 3
+    clear
 }

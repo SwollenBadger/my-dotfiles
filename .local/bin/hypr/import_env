@@ -3,12 +3,12 @@ set -e
 
 [[ -n $HYPRLAND_DEBUG_CONF ]] && exit 0
 USAGE="\
-Import environment variables 
+    Import environment variables
 Usgae: $0 <command>
 Commands:
-   tmux         import to tmux server
-   system       import to systemd and dbus user session
-   help         print this help
+tmux         import to tmux server
+system       import to systemd and dbus user session
+help         print this help
 "
 
 _envs=(

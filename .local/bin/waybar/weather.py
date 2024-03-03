@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 
 import subprocess
@@ -44,7 +43,8 @@ status = f"{status[:16]}.." if len(status) > 17 else status
 # print(status)
 
 # status code
-status_code = html_data("#regionHeader").attr("class").split(" ")[2].split("-")[2]
+status_code = html_data("#regionHeader").attr(
+    "class").split(" ")[2].split("-")[2]
 # print(status_code)
 
 # status icon
@@ -64,12 +64,14 @@ temp_feel_text = f"Feels like {temp_feel}c"
 
 # min-max temperature
 temp_min = (
-    html_data("div[data-testid='wxData'] > span[data-testid='TemperatureValue']")
+    html_data(
+        "div[data-testid='wxData'] > span[data-testid='TemperatureValue']")
     .eq(0)
     .text()
 )
 temp_max = (
-    html_data("div[data-testid='wxData'] > span[data-testid='TemperatureValue']")
+    html_data(
+        "div[data-testid='wxData'] > span[data-testid='TemperatureValue']")
     .eq(1)
     .text()
 )
@@ -100,7 +102,8 @@ prediction = html_data("section[aria-label='Hourly Forecast']")(
     "div[data-testid='SegmentPrecipPercentage'] > span"
 ).text()
 prediction = prediction.replace("Chance of Rain", "")
-prediction = f"\n\n    (hourly) {prediction}" if len(prediction) > 0 else prediction
+prediction = f"\n\n    (hourly) {prediction}" if len(
+    prediction) > 0 else prediction
 # print(prediction)
 
 # tooltip text
