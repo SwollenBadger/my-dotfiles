@@ -7,7 +7,7 @@ function dependencies() {
     local DEV_TOOLS="pnpm composer fnm-bin rustup opam go git github-cli neovim neovim visual-studio-code-bin"
 
     # -- Main package
-    local CORE="hyprland waybar xdg-desktop-portal-hyprland zsh qt5-wayland qt6-wayland polkit-gnome sddm-git"
+    local CORE="hyprland waybar xdg-desktop-portal-hyprland zsh qt5-wayland qt6-wayland polkit-gnome sddm upower"
     local COMPONENT="swww mako rofi-lbonn-wayland hypridle hyprlock btop neofetch network-manager-applet thunar-archive-plugin"
     local CORE_COMPONENT="ffmpegthumbnailer tumbler brightnessctl playerctl pamixer xdg-user-dirs gvfs"
     local LIB="colord libqalculate python-pyquery noise-suppression-for-voice imagemagick xorg-xhost rofi-calc rofi-emoji"
