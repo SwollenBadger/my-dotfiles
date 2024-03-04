@@ -15,17 +15,17 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
- blockf \
+    blockf \
     zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start" \
+    atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions
 
 zinit light-mode for \
-  hlissner/zsh-autopair \
-  MichaelAquilina/zsh-you-should-use \
-  Aloxaf/fzf-tab
+    hlissner/zsh-autopair \
+    MichaelAquilina/zsh-you-should-use \
+    Aloxaf/fzf-tab
 
 zinit ice wait'3' lucid
 zinit light zsh-users/zsh-history-substring-search

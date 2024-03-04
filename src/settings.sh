@@ -58,8 +58,8 @@ function settings() {
     pamixer --get-default-sink || true
 
     sleep 5
-    pamixer --set-volume 35 || true
-    pamixer --default-source --set-volume 35 || true
+    pamixer --set-volume 45 || true
+    pamixer --default-source --set-volume 45 || true
     pamixer --default-source -m || true
 
     sed -i "s/^alias[[:space:]]pman=.*$/alias pman='$AURH'/" ~/.config/zsh/aliases.zsh

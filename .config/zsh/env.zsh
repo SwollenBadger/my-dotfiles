@@ -4,8 +4,8 @@ eval "$(fnm env --use-on-cd)"
 # Pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
 # Cargo
@@ -16,7 +16,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export TERM=xterm-256color foot
 export SUDO_PROMPT="Password: "
-export BROWSER="firefox"
+export BROWSER="google-chrome-stable"
 export VISUAL="nvim"
 export EDITOR="nvim"
 

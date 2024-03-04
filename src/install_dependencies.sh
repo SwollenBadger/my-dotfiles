@@ -82,7 +82,7 @@ function dependencies_settings() {
     opam init -y
 
     xdg-user-dirs-update --force
-    xdg-settings set default-web-browser firefox.desktop
+    xdg-settings set default-web-browser google-chrome.desktop
     xdg-mime default thunar.desktop inode/directory
     xdg-mime default org.gnome.Loupe.desktop image/png image/jpeg image/gif image/bmp image/tiff
     xdg-mime default mpv.desktop video/mp4 video/webm video/x-matroska video/avi video/x-flv
