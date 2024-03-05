@@ -51,7 +51,7 @@ function install_config() {
         sed -i '/"modules": \[/,/^\s*\],/ s/"custom\/hibernate"/\/\/ "custom\/hibernate"/' ~/.config/waybar/modules/left.jsonc
     fi
 
-    if [[ -e "$(awk -F'resume=' '{print $2}' /proc/cmdline)" ]]; then
+    if [[ -z "$(awk -F'resume=' '{print $2}' /proc/cmdline)" ]]; then
         echo -e "listener {" >> $HOME/.config/hypr/hyprdile.conf
         echo -e "    timeout = 1800" >> $HOME/.config/hypr/hyprdile.conf
         echo -e "    on-timeout = systemctl suspend" >> $HOME/.config/hypr/hyprdile.conf
