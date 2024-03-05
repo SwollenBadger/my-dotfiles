@@ -11,8 +11,9 @@ function lid_off() {
     if (( "$monitors" > "1" )); then
         hyprctl keyword monitor "eDP-1, disable"
     else
-        hyprlock
+        loginctl lock-session
         hyprctl dispatch dpms off
+        hyprlock && loginctl unlock-session
     fi
 }
 

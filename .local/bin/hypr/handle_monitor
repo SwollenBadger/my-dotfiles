@@ -15,14 +15,16 @@ function focus() {
 }
 
 function handle() {
-case $1 in monitoradded*)
-            ~/.scripts/wallpaper.sh cycle;
+    case $1 in
+        monitoradded*)
+            ~/.local/bin/hypr/wallpaper.sh cycle ;;
     esac
-
-    socat - "UNIX-CONNECT:/tmp/hypr/${HYPRLAND_INSTANCE_SIGNATURE}/.socket2.sock" | while read -r line; do echo $line; handle "$line"; done
 }
 
 case "$1" in
-    "handle") handle ;;
-    "focus") focus $2 ;;
+    "handle")
+        socat - "UNIX-CONNECT:/tmp/hypr/${HYPRLAND_INSTANCE_SIGNATURE}/.socket2.sock" | while read -r line; do handle "$line"; done; ;;
+    "focus")
+        focus $2 ;;
 esac
+
