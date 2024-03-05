@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
 if [[ $1 == "global" ]]; then
-    selected=$(fd . -t d -H --no-ignore --exclude /.git / 2>/dev/null | fzf)
+    selected=$(fd . / -t d -u --exclude "/home*" --exclude "/run/media*" --exclude "/media*" "**/.git/**" --exclude "**/node_modules/**" 2>/dev/null | fzf)
 elif [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd . -t d -H --min-depth 1 --max-depth 3 --no-ignore --exclude .git\
-        ~/Data ~/Datacenter/MyStudy/Practice ~/Datacenter/MyStudy/Playground ~/Datacenter/Projects 2>/dev/null | fzf)
+    selected=$(fd . "/home" "/run/media" "/media" -t d -u --exclude **/.git/** --exclude **/node_modules/** 2>/dev/null | fzf)
 fi
 
 if [[ -z $selected ]]; then
