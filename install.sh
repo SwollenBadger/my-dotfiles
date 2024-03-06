@@ -73,7 +73,7 @@ GTK_THEME="Catppuccin-Mocha-Standard-Pink-Dark"
 # ---------------------- Install aur helper ---------------------- #
 function install_aur_helper() {
     if package_exist $AURH; then
-        sudo pacman -Syu --noconfirm
+        pman -Syu --noconfirm --sudoloop
     else
         sudo pacman -Syu --noconfirm
         print_color $MAGENTA "Installing $AURH (AUR Helper)\n"
