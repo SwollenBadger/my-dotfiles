@@ -90,10 +90,11 @@ function install_aur_helper() {
 
 function clean() {
     cd $HOME
-    rm -rf $CURRENT_DIRECTORY
     rm -rf $HOME/*.zip
     rm -rf $HOME/grub-catppuccin
     rm -rf $HOME/sddm-catppuccin
+    sudo rm -rf $HOME/rofi*
+    rm -rf $CURRENT_DIRECTORY
 }
 
 # ---------------------- Main Install ---------------------- #

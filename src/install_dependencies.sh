@@ -1,3 +1,26 @@
+function rofi_library() {
+    git clone https://github.com/svenstaro/rofi-calc.git $HOME/rofi-calc
+    git clone https://github.com/Mange/rofi-emoji $HOME/rofi-emoji
+
+    cd $HOME/rofi-calc
+    mkdir m4
+    autoreconf -i
+    mkdir build
+    cd build
+    ../configure
+    sudo make install
+
+    cd $HOME/rofi-emoji
+    autoreconf -i
+    mkdir build
+    cd build/
+    ../configure
+    make
+    sudo make install
+
+    cd $CURRENT_DIRECTORY
+}
+
 function dependencies() {
     clear
     print_color $YELLOW "Installing dependencies...\n"
@@ -10,7 +33,7 @@ function dependencies() {
     local CORE="hyprland waybar xdg-desktop-portal-hyprland zsh qt5-wayland qt6-wayland polkit-gnome sddm upower"
     local COMPONENT="swww mako rofi-lbonn-wayland hypridle hyprlock btop neofetch network-manager-applet thunar-archive-plugin"
     local CORE_COMPONENT="ffmpegthumbnailer tumbler brightnessctl playerctl pamixer xdg-user-dirs gvfs"
-    local LIB="colord libqalculate python-pyquery noise-suppression-for-voice imagemagick xorg-xhost rofi-calc rofi-emoji"
+    local LIB="colord libqalculate python-pyquery noise-suppression-for-voice imagemagick xorg-xhost"
     local UTILITY="tldr tmux tmux-plugin-manager hyprpicker grimblast cliphist swappy udiskie file-roller socat flatpak"
     local APP="foot thunar mpv loupe gparted pavucontrol google-chrome firefox epiphany android-file-transfer okular"
     local CMDLINE="eza jq fzf fd ripgrep bat wget"
@@ -72,6 +95,8 @@ function dependencies() {
         $IME_PACKAGE \
         $SPOTIFY_PACKAGE \
         $CMDLINE
+
+    rofi_library
 }
 
 function dependencies_settings() {
