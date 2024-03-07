@@ -6,7 +6,6 @@ function setting_grub() {
         if [[ -z $GRUB_HANDLED ]]; then
             print_color $YELLOW "Setting up grub...\n"
 
-            sudo rm -rf $HOME/grub-catppuccin
             git clone https://github.com/catppuccin/grub.git $HOME/grub-catppuccin
             sudo cp -r $HOME/grub-catppuccin/src/*mocha* /usr/share/grub/themes/
 
@@ -30,7 +29,6 @@ function setting_sddm() {
     if [[ -z $SDDM_HANDLED ]]; then
         print_color $YELLOW "Setting up sddm...\n"
 
-        sudo rm -rf $HOME/sddm-catppuccin
         git clone https://github.com/catppuccin/sddm $HOME/sddm-catppuccin
         sudo cp -r $HOME/sddm-catppuccin/src/*mocha* /usr/share/sddm/themes/
 

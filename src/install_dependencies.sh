@@ -1,6 +1,4 @@
 function rofi_library() {
-    sudo rm -rf $HOME/rofi*
-
     git clone https://github.com/svenstaro/rofi-calc.git $HOME/rofi-calc
     git clone https://github.com/Mange/rofi-emoji $HOME/rofi-emoji
 
