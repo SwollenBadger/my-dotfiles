@@ -31,8 +31,8 @@ function dependencies() {
 
     # -- Main package
     local CORE="hyprland waybar xdg-desktop-portal-hyprland zsh qt5-wayland qt6-wayland polkit-gnome sddm upower"
-    # local COMPONENT="swww mako rofi-lbonn-wayland hypridle hyprlock btop neofetch network-manager-applet thunar-archive-plugin"
-    local COMPONENT="swww mako rofi-lbonn-wayland hypridle btop neofetch network-manager-applet thunar-archive-plugin"
+    local COMPONENT="swww mako rofi-lbonn-wayland hypridle hyprlock-git btop neofetch network-manager-applet thunar-archive-plugin"
+    # local COMPONENT="swww mako rofi-lbonn-wayland hypridle btop neofetch network-manager-applet thunar-archive-plugin"
     local CORE_COMPONENT="ffmpegthumbnailer tumbler brightnessctl playerctl pamixer xdg-user-dirs gvfs"
     local LIB="colord libqalculate python-pyquery noise-suppression-for-voice imagemagick xorg-xhost"
     local UTILITY="tldr tmux tmux-plugin-manager hyprpicker grimblast cliphist swappy udiskie file-roller socat flatpak"
