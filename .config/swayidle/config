@@ -1,5 +1,6 @@
 lock 'pamixer -m' 
 unlock 'pamixer -u' 
+before-sleep 'hyprctl dispatch dpms on'
 
 timeout 300 'pamixer-m;hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
 timeout 330 'swaylock;loginctl unlock-session'
