@@ -1,6 +1,6 @@
 #!/bin/sh
 
-idle_status=$(pidof hypridle)
+idle_status=$(pidof swayidle)
 
 function icon() {
     if [[ -n "$idle_status" ]]; then icon="󰈈"; else icon='󰈈'; fi
@@ -12,10 +12,10 @@ function icon() {
 function toggle() {
     if [[ -n "$idle_status" ]]; then
         notify-send -a "idle" -h string:x-canonical-private-synchronous:sys-notify "Idle turned off" "Device will not sleep"
-        pkill hypridle
+        pkill swayidle
     else
         notify-send -a "idle" -h string:x-canonical-private-synchronous:sys-notify "Idle turned on" "Device will sleep"
-        hypridle
+        swayidle
     fi
 }
 

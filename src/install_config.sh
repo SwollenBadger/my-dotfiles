@@ -51,17 +51,24 @@ function install_config() {
         sed -i '/"modules": \[/,/^\s*\],/ s/"custom\/hibernate"/\/\/ "custom\/hibernate"/' ~/.config/waybar/modules/left.jsonc
     fi
 
+    # if [[ -z "$(awk -F'resume=' '{print $2}' /proc/cmdline)" ]]; then
+    #     echo -e "listener {" >> $HOME/.config/hypr/hyprdile.conf
+    #     echo -e "    timeout = 1800" >> $HOME/.config/hypr/hyprdile.conf
+    #     echo -e "    on-timeout = systemctl suspend" >> $HOME/.config/hypr/hyprdile.conf
+    #     echo -e "}" >> $HOME/.config/hypr/hyprdile.conf
+    # else
+    #     echo -e "listener {" >> $HOME/.config/hypr/hyprdile.conf
+    #     echo -e "    timeout = 10800" >> $HOME/.config/hypr/hyprdile.conf
+    #     echo -e "    on-timeout = systemctl hibernate" >> $HOME/.config/hypr/hyprdile.conf
+    #     echo -e "}" >> $HOME/.config/hypr/hyprdile.conf
+    # fi
+
     if [[ -z "$(awk -F'resume=' '{print $2}' /proc/cmdline)" ]]; then
-        echo -e "listener {" >> $HOME/.config/hypr/hyprdile.conf
-        echo -e "    timeout = 1800" >> $HOME/.config/hypr/hyprdile.conf
-        echo -e "    on-timeout = systemctl suspend" >> $HOME/.config/hypr/hyprdile.conf
-        echo -e "}" >> $HOME/.config/hypr/hyprdile.conf
+        echo -e "timeout 1800 'systemctl suspend'" >> $HOME/.config/swayidle/config
     else
-        echo -e "listener {" >> $HOME/.config/hypr/hyprdile.conf
-        echo -e "    timeout = 10800" >> $HOME/.config/hypr/hyprdile.conf
-        echo -e "    on-timeout = systemctl hibernate" >> $HOME/.config/hypr/hyprdile.conf
-        echo -e "}" >> $HOME/.config/hypr/hyprdile.conf
+        echo -e "timeout 1800 'systemctl hibernate'" >> $HOME/.config/swayidle/config
     fi
+
 
     chmod +x ~/.local/bin/**/*
     sed -i 's/"exec": "[^"]*"/"exec": "'"$AURH"' -Qua | wc -l"/' ~/.config/waybar/modules/left.jsonc
