@@ -66,7 +66,7 @@ function install_config() {
     if [[ -z "$(awk -F'resume=' '{print $2}' /proc/cmdline)" ]]; then
         echo -e "timeout 1800 'systemctl suspend'" >> $HOME/.config/swayidle/config
     else
-        echo -e "timeout 1800 'systemctl hibernate'" >> $HOME/.config/swayidle/config
+        echo -e "timeout 10800 'systemctl hibernate'" >> $HOME/.config/swayidle/config
     fi
 
 
