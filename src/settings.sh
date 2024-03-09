@@ -7,6 +7,7 @@ function setting_grub() {
             print_color $YELLOW "Setting up grub...\n"
 
             git clone https://github.com/catppuccin/grub.git $HOME/grub-catppuccin
+            sed -i '/^+ label {/,/^}/ s/top = 82%/top = 15%/' $HOME/grub-catppuccin/src/*/theme.txt
             sudo cp -r $HOME/grub-catppuccin/src/*mocha* /usr/share/grub/themes/
 
             sudo sed -i 's/^#\(GRUB_THEME="\)\/path\/to\/gfxtheme\"/\1\/usr\/share\/grub\/themes\/catppuccin-mocha-grub-theme\/theme.txt\"/' /etc/default/grub
