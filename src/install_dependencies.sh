@@ -36,7 +36,7 @@ function dependencies() {
     local CORE_COMPONENT="ffmpegthumbnailer tumbler brightnessctl playerctl pamixer xdg-user-dirs gvfs"
     local LIB="colord libqalculate python-pyquery noise-suppression-for-voice imagemagick xorg-xhost"
     local UTILITY="tldr tmux tmux-plugin-manager hyprpicker grimblast cliphist swappy udiskie file-roller socat flatpak"
-    local APP="foot thunar mpv loupe gparted pavucontrol google-chrome firefox epiphany android-file-transfer okular"
+    local APP="foot thunar mpv loupe gparted pavucontrol google-chrome firefox epiphany android-file-transfer okular gnome-text-editor"
     local CMDLINE="eza jq fzf fd ripgrep bat wget"
 
     # -- Fonts package
@@ -110,13 +110,14 @@ function dependencies_settings() {
     xdg-user-dirs-update --force
     xdg-settings set default-web-browser google-chrome.desktop
     xdg-mime default thunar.desktop inode/directory
+    xdg-mime default org.gnome.TextEditor.desktop plain/text
     xdg-mime default org.gnome.Loupe.desktop image/png image/jpeg image/gif image/bmp image/tiff
     xdg-mime default mpv.desktop video/mp4 video/webm video/x-matroska video/avi video/x-flv
     xdg-mime default org.kde.okular.desktop application/pdf application/postscript application/epub+zip
 
-    xfconf-query --channel thunar --create --property /last-show-hidden --type bool --set true
-    xfconf-query --channel thunar --create --property /misc-confirm-close-multiple-tabs --type bool --set false
-    xfconf-query --channel thunar --create --property /last-view --type string --set ThunarDetailsView
+    # xfconf-query --channel thunar --create --property /last-show-hidden --type bool --set true
+    # xfconf-query --channel thunar --create --property /misc-confirm-close-multiple-tabs --type bool --set false
+    # xfconf-query --channel thunar --create --property /last-view --type string --set ThunarDetailsView
 
     if [[ "$CURRENT_HOSTNAME" == "thinkpad" ]]; then
         echo -e "START_THRESHOLD=75\nSTOP_THRESHOLD=80 " | sudo tee /etc/tp-battery-mode.conf
