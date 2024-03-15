@@ -81,7 +81,7 @@ function inc_mic_volume() {
         pamixer --default-source -u
     fi
 
-    pamixer --default-source -i 5 && notify_mic_user "Increasing Mic volume"
+    pamixer --default-source -i 1 && notify_mic_user "Increasing Mic volume"
 }
 
 # Decrease MIC Volume
@@ -90,7 +90,7 @@ function dec_mic_volume() {
         pamixer --default-source -u
     fi
 
-    pamixer --default-source -d 5 && notify_mic_user "Decreasing Mic volume"
+    pamixer --default-source -d 1 && notify_mic_user "Decreasing Mic volume"
 }
 
 # Toggle Mic

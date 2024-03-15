@@ -1,5 +1,15 @@
 #!/bin/bash
 
+function toworkspace() {
+    active=$(hyprctl -j monitors | jq --raw-output '.[] | select(.focused==true).specialWorkspace.name | split(":") | if length > 0 then .[0] else "" end')
+
+    if [[ ${#active} -gt 0 ]]; then
+        hyprctl dispatch togglespecialworkspace
+    fi
+
+    hyprctl dispatch workspace $1
+}
+
 function move_currentworkspace_to_monitor() {
     ACTIVE_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .x')
 
@@ -39,6 +49,9 @@ function tidy_workspace() {
 }
 
 case "$1" in
+    "toworkspace")
+        toworkspace $2
+        ;;
     "tidy_workspace")
         tidy_workspace
         ;;

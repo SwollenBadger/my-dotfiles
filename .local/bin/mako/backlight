@@ -28,16 +28,15 @@ function notify_user() {
 
 # Change brightness
 function change_backlight() {
-    brightnessctl set "$1" -n "5%"
-    notify_user "$2"
+    brightnessctl set "$1" -n "5%" && get_icon && notify_user "$2"
 }
 
 function backlight_inc() {
-    change_backlight "+1%" "Increasing Backlight"
+    change_backlight "+5%" "Increasing Backlight"
 }
 
 function backlight_dec() {
-    change_backlight "1%-" "Decreasing Backlight"
+    change_backlight "5%-" "Decreasing Backlight"
 }
 
 # Execute accordingly
