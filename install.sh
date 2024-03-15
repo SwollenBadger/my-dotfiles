@@ -93,6 +93,7 @@ function clean() {
     rm -rf $HOME/*.zip
     rm -rf $HOME/grub-catppuccin
     rm -rf $HOME/sddm-catppuccin
+    rm -rf $HOME/fcitx5
     sudo rm -rf $HOME/rofi*
     rm -rf $CURRENT_DIRECTORY
 }

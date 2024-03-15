@@ -6,6 +6,7 @@ function setting_grub() {
         if [[ -z $GRUB_HANDLED ]]; then
             print_color $YELLOW "Setting up grub...\n"
 
+            sudo rm -rf $HOME/grub-catppuccin
             git clone https://github.com/catppuccin/grub.git $HOME/grub-catppuccin
             sed -i '/^+ label {/,/^}/ s/top = 82%/top = 15%/' $HOME/grub-catppuccin/src/*/theme.txt
             sudo cp -r $HOME/grub-catppuccin/src/*mocha* /usr/share/grub/themes/
@@ -30,6 +31,7 @@ function setting_sddm() {
     if [[ -z $SDDM_HANDLED ]]; then
         print_color $YELLOW "Setting up sddm...\n"
 
+        sudo rm -rf $HOME/sddm-catppuccin
         git clone https://github.com/catppuccin/sddm $HOME/sddm-catppuccin
         sudo cp -r $HOME/sddm-catppuccin/src/*mocha* /usr/share/sddm/themes/
 
@@ -54,7 +56,7 @@ function settings() {
     fi
     setting_sddm
 
-    sudo brightnessctl set 15%
+    sudo brightnessctl set 25%
 
     pamixer --get-default-sink || true
 

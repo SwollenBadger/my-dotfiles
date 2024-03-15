@@ -36,7 +36,7 @@ function dependencies() {
     local CORE_COMPONENT="ffmpegthumbnailer tumbler brightnessctl playerctl pamixer xdg-user-dirs gvfs"
     local LIB="colord libqalculate python-pyquery noise-suppression-for-voice imagemagick xorg-xhost"
     local UTILITY="tldr tmux tmux-plugin-manager hyprpicker grimblast cliphist swappy udiskie file-roller socat flatpak"
-    local APP="foot thunar mpv loupe gparted pavucontrol google-chrome firefox epiphany android-file-transfer okular gnome-text-editor"
+    local APP="foot thunar mpv loupe gparted pavucontrol google-chrome firefox epiphany android-file-transfer okular gnome-text-editor gimp"
     local CMDLINE="eza jq fzf fd ripgrep bat wget"
 
     # -- Fonts package

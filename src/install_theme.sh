@@ -17,10 +17,18 @@ function install_theme() {
         | cut -d : -f 2,3 \
         | xargs wget -O $HOME/gtk_theme.zip
 
+    curl -s https://api.github.com/repos/Diolinux/PhotoGIMP/releases/latest \
+        | grep -o '"browser_download_url": *"[^"]*"' \
+        | cut -d '"' -f 4 \
+        | xargs wget -O $HOME/photogimp.zip
+
     wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.local/share/icons" sh
 
     unzip -o $HOME/gtk_theme.zip -d $HOME/.local/share/themes
     unzip -o $HOME/system-font.zip "*.ttf" -d $HOME/.local/share/fonts/Roboto
+    unzip -o $HOME/photogimp.zip -d $HOME
+    cp $HOME/PhotoGIMP-master/.var/app/org.gimp.GIMP/config/GIMP $HOME/.config
+    rm -rf $HOME/PhotoGIMP-master
 
     gsettings set org.gnome.desktop.interface gtk-theme $GTK_THEME
     gsettings set org.gnome.desktop.interface color-scheme prefer-dark
