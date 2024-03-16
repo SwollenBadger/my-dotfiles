@@ -12,7 +12,7 @@ if [[ -z $selected ]]; then
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+selected_name=$(echo "$(basename "$(dirname "$selected")")/$(basename "$selected")" | tr . _ | tr -d /)
 tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then

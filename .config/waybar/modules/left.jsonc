@@ -38,12 +38,12 @@
         "tooltip": false,
     },
     "custom/suspend": {
-        "format": "󰏥",
+        "format": "󰙦",
         "on-click": "~/.local/bin/rofi/powercontrol suspend",
         "tooltip": false,
     },
     "custom/hibernate": {
-        "format": "",
+        "format": "󰥹",
         "on-click": "~/.local/bin/rofi/powercontrol hibernate",
         "tooltip": false,
     },

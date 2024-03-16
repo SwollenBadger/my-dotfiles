@@ -28,9 +28,9 @@ directory_mode=recursive
 MAXENTRIES = 5000
 MAXDIRSTACK = 20
 
-local msg = require 'mp.msg'
-local options = require 'mp.options'
-local utils = require 'mp.utils'
+local msg = require("mp.msg")
+local options = require("mp.options")
+local utils = require("mp.utils")
 
 o = {
     disabled = false,
@@ -42,13 +42,18 @@ o = {
     additional_audio_exts = "",
     ignore_hidden = true,
     same_type = false,
-    directory_mode = "auto"
+    directory_mode = "auto",
 }
 options.read_options(o, nil, function(list)
     split_option_exts(list.additional_video_exts, list.additional_audio_exts, list.additional_image_exts)
-    if list.videos or list.additional_video_exts or
-        list.audio or list.additional_audio_exts or
-        list.images or list.additional_image_exts then
+    if
+        list.videos
+        or list.additional_video_exts
+        or list.audio
+        or list.additional_audio_exts
+        or list.images
+        or list.additional_image_exts
+    then
         create_extensions()
     end
     if list.directory_mode then
@@ -56,51 +61,109 @@ options.read_options(o, nil, function(list)
     end
 end)
 
-function Set (t)
+function Set(t)
     local set = {}
-    for _, v in pairs(t) do set[v] = true end
+    for _, v in pairs(t) do
+        set[v] = true
+    end
     return set
 end
 
-function SetUnion (a,b)
-    for k in pairs(b) do a[k] = true end
+function SetUnion(a, b)
+    for k in pairs(b) do
+        a[k] = true
+    end
     return a
 end
 
-function Split (s)
+function Split(s)
     local set = {}
-    for v in string.gmatch(s, '([^,]+)') do set[v] = true end
+    for v in string.gmatch(s, "([^,]+)") do
+        set[v] = true
+    end
     return set
 end
 
-EXTENSIONS_VIDEO = Set {
-    '3g2', '3gp', 'avi', 'flv', 'm2ts', 'm4v', 'mj2', 'mkv', 'mov',
-    'mp4', 'mpeg', 'mpg', 'ogv', 'rmvb', 'webm', 'wmv', 'y4m'
-}
+EXTENSIONS_VIDEO = Set({
+    "3g2",
+    "3gp",
+    "avi",
+    "flv",
+    "m2ts",
+    "m4v",
+    "mj2",
+    "mkv",
+    "mov",
+    "mp4",
+    "mpeg",
+    "mpg",
+    "ogv",
+    "rmvb",
+    "webm",
+    "wmv",
+    "y4m",
+})
 
-EXTENSIONS_AUDIO = Set {
-    'aiff', 'ape', 'au', 'flac', 'm4a', 'mka', 'mp3', 'oga', 'ogg',
-    'ogm', 'opus', 'wav', 'wma'
-}
+EXTENSIONS_AUDIO = Set({
+    "aiff",
+    "ape",
+    "au",
+    "flac",
+    "m4a",
+    "mka",
+    "mp3",
+    "oga",
+    "ogg",
+    "ogm",
+    "opus",
+    "wav",
+    "wma",
+})
 
-EXTENSIONS_IMAGES = Set {
-    'avif', 'bmp', 'gif', 'j2k', 'jp2', 'jpeg', 'jpg', 'jxl', 'png',
-    'svg', 'tga', 'tif', 'tiff', 'webp'
-}
+EXTENSIONS_IMAGES = Set({
+    "avif",
+    "bmp",
+    "gif",
+    "j2k",
+    "jp2",
+    "jpeg",
+    "jpg",
+    "jxl",
+    "png",
+    "svg",
+    "tga",
+    "tif",
+    "tiff",
+    "webp",
+})
 
 function split_option_exts(video, audio, image)
-    if video then o.additional_video_exts = Split(o.additional_video_exts) end
-    if audio then o.additional_audio_exts = Split(o.additional_audio_exts) end
-    if image then o.additional_image_exts = Split(o.additional_image_exts) end
+    if video then
+        o.additional_video_exts = Split(o.additional_video_exts)
+    end
+    if audio then
+        o.additional_audio_exts = Split(o.additional_audio_exts)
+    end
+    if image then
+        o.additional_image_exts = Split(o.additional_image_exts)
+    end
 end
+
 split_option_exts(true, true, true)
 
 function create_extensions()
     EXTENSIONS = {}
-    if o.videos then SetUnion(SetUnion(EXTENSIONS, EXTENSIONS_VIDEO), o.additional_video_exts) end
-    if o.audio then SetUnion(SetUnion(EXTENSIONS, EXTENSIONS_AUDIO), o.additional_audio_exts) end
-    if o.images then SetUnion(SetUnion(EXTENSIONS, EXTENSIONS_IMAGES), o.additional_image_exts) end
+    if o.videos then
+        SetUnion(SetUnion(EXTENSIONS, EXTENSIONS_VIDEO), o.additional_video_exts)
+    end
+    if o.audio then
+        SetUnion(SetUnion(EXTENSIONS, EXTENSIONS_AUDIO), o.additional_audio_exts)
+    end
+    if o.images then
+        SetUnion(SetUnion(EXTENSIONS, EXTENSIONS_IMAGES), o.additional_image_exts)
+    end
 end
+
 create_extensions()
 
 function validate_directory_mode()
@@ -108,6 +171,7 @@ function validate_directory_mode()
         o.directory_mode = nil
     end
 end
+
 validate_directory_mode()
 
 function add_files(files)
@@ -119,7 +183,7 @@ function add_files(files)
 end
 
 function get_extension(path)
-    match = string.match(path, "%.([^%.]+)$" )
+    match = string.match(path, "%.([^%.]+)$")
     if match == nil then
         return "nomatch"
     else
@@ -147,18 +211,19 @@ end
 
 function alphanumsort(filenames)
     local function padnum(n, d)
-        return #d > 0 and ("%03d%s%.12f"):format(#n, n, tonumber(d) / (10 ^ #d))
-            or ("%03d%s"):format(#n, n)
+        return #d > 0 and ("%03d%s%.12f"):format(#n, n, tonumber(d) / (10 ^ #d)) or ("%03d%s"):format(#n, n)
     end
 
     local tuples = {}
     for i, f in ipairs(filenames) do
-        tuples[i] = {f:lower():gsub("0*(%d+)%.?(%d*)", padnum), f}
+        tuples[i] = { f:lower():gsub("0*(%d+)%.?(%d*)", padnum), f }
     end
     table.sort(tuples, function(a, b)
         return a[1] == b[1] and #b[2] < #a[2] or a[1] < b[1]
     end)
-    for i, tuple in ipairs(tuples) do filenames[i] = tuple[2] end
+    for i, tuple in ipairs(tuples) do
+        filenames[i] = tuple[2]
+    end
     return filenames
 end
 
@@ -174,10 +239,10 @@ function scan_dir(path, current_file, dir_mode, separator, dir_depth, total_file
     local files = utils.readdir(path, "files") or {}
     local dirs = dir_mode ~= "ignore" and utils.readdir(path, "dirs") or {}
     local prefix = path == "." and "" or path
-    table.filter(files, function (v)
+    table.filter(files, function(v)
         -- The current file could be a hidden file, ignoring it doesn't load other
         -- files from the current directory.
-        if (o.ignore_hidden and not (prefix .. v == current_file) and string.match(v, "^%.")) then
+        if o.ignore_hidden and not (prefix .. v == current_file) and string.match(v, "^%.") then
             return false
         end
         local ext = get_extension(v)
@@ -187,7 +252,7 @@ function scan_dir(path, current_file, dir_mode, separator, dir_depth, total_file
         return extensions[string.lower(ext)]
     end)
     table.filter(dirs, function(d)
-        return not ((o.ignore_hidden and string.match(d, "^%.")))
+        return not (o.ignore_hidden and string.match(d, "^%."))
     end)
     alphanumsort(files)
     alphanumsort(dirs)
@@ -199,8 +264,15 @@ function scan_dir(path, current_file, dir_mode, separator, dir_depth, total_file
     table.append(total_files, files)
     if dir_mode == "recursive" then
         for _, dir in ipairs(dirs) do
-            scan_dir(prefix .. dir .. separator, current_file, dir_mode,
-                     separator, dir_depth + 1, total_files, extensions)
+            scan_dir(
+                prefix .. dir .. separator,
+                current_file,
+                dir_mode,
+                separator,
+                dir_depth + 1,
+                total_files,
+                extensions
+            )
         end
     else
         for i, dir in ipairs(dirs) do
@@ -231,8 +303,7 @@ function find_and_add_entries()
     local pl_count = mp.get_property_number("playlist-count", 1)
     this_ext = get_extension(filename)
     -- check if this is a manually made playlist
-    if (pl_count > 1 and autoloaded == nil) or
-       (pl_count == 1 and EXTENSIONS[string.lower(this_ext)] == nil) then
+    if (pl_count > 1 and autoloaded == nil) or (pl_count == 1 and EXTENSIONS[string.lower(this_ext)] == nil) then
         msg.debug("stopping: manually made playlist")
         return
     else
@@ -258,8 +329,7 @@ function find_and_add_entries()
 
     local pl = mp.get_property_native("playlist", {})
     local pl_current = mp.get_property_number("playlist-pos-1", 1)
-    msg.trace(("playlist-pos-1: %s, playlist: %s"):format(pl_current,
-        utils.to_string(pl)))
+    msg.trace(("playlist-pos-1: %s, playlist: %s"):format(pl_current, utils.to_string(pl)))
 
     local files = {}
     do
@@ -284,7 +354,7 @@ function find_and_add_entries()
     if current == nil then
         return
     end
-    msg.trace("current file position in files: "..current)
+    msg.trace("current file position in files: " .. current)
 
     -- treat already existing playlist entries, independent of how they got added
     -- as if they got added by autoload
@@ -292,7 +362,7 @@ function find_and_add_entries()
         added_entries[entry.filename] = true
     end
 
-    local append = {[-1] = {}, [1] = {}}
+    local append = { [-1] = {}, [1] = {} }
     for direction = -1, 1, 2 do -- 2 iterations, with direction = -1 and +1
         for i = 1, MAXENTRIES do
             local pos = current + i * direction
@@ -305,11 +375,11 @@ function find_and_add_entries()
             if not added_entries[file] then
                 if direction == -1 then
                     msg.verbose("Prepending " .. file)
-                    table.insert(append[-1], 1, {file, pl_current + i * direction + 1})
+                    table.insert(append[-1], 1, { file, pl_current + i * direction + 1 })
                 else
                     msg.verbose("Adding " .. file)
                     if pl_count > 1 then
-                        table.insert(append[1], {file, pl_current + i * direction - 1})
+                        table.insert(append[1], { file, pl_current + i * direction - 1 })
                     else
                         mp.commandv("loadfile", file, "append")
                     end
