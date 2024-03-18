@@ -27,7 +27,7 @@ function install_theme() {
     unzip -o $HOME/gtk_theme.zip -d $HOME/.local/share/themes
     unzip -o $HOME/system-font.zip "*.ttf" -d $HOME/.local/share/fonts/Roboto
     unzip -o $HOME/photogimp.zip -d $HOME
-    cp $HOME/PhotoGIMP-master/.var/app/org.gimp.GIMP/config/GIMP $HOME/.config
+    cp -r $HOME/PhotoGIMP-master/.var/app/org.gimp.GIMP/config/GIMP $HOME/.config
     rm -rf $HOME/PhotoGIMP-master
 
     gsettings set org.gnome.desktop.interface gtk-theme Catppuccin-Mocha-Standard-Pink-Dark
