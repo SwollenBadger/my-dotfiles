@@ -12,7 +12,7 @@ source "./src/install_theme.sh"
 source "./src/settings.sh"
 
 # ---------------------- Optional Source Install ---------------------- #
-source "./src/optionals/install_spotify.sh"
+source "./src/optionals/install_additional_apps.sh"
 source "./src/optionals/install_docker.sh"
 source "./src/optionals/install_input_method.sh"
 
@@ -43,9 +43,16 @@ print_color $MAGENTA "Proceed to install? (yes/no) "
 read -n1 -rep '' IME
 
 echo -e
-print_color $MAGENTA "Install Spotify will include spicetify mocha by default\n"
+print_color $MAGENTA "Would you like to install additional app following:\n"
+print_color $MAGENTA "Spotify (will include spicetify mocha by default)\n"
+print_color $MAGENTA "gimp\n"
+print_color $MAGENTA "inkscape\n"
+print_color $MAGENTA "blender\n"
+print_color $MAGENTA "libreoffice-still\n"
+print_color $MAGENTA "kdenlive\n"
+print_color $MAGENTA "obs-studio\n"
 print_color $MAGENTA "Proceed to install? (yes/no) "
-read -n1 -rep '' SPT
+read -n1 -rep '' ADD_APP
 
 echo -e
 print_color $MAGENTA "Would you like to install docker?\n"
@@ -107,8 +114,8 @@ install_theme
 settings
 
 # ---------------------- Optional Install ---------------------- #
+install_additional_apps
 install_input_method
-install_spotify
 install_docker
 
 print_color $GREEN "Installation has finished, would you like to [ start hyprland(s or S) ] or [ restart your machine(r or R) ], leave empty to do nothing: "

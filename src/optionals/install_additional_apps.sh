@@ -1,7 +1,10 @@
 # -------------------------------- Install Spotify -------------------------------- #
-function install_spotify() {
+function install_additional_apps() {
     if [[ ! "$SPT" =~ [Nn] ]]; then
-        print_color $YELLOW "\nInstalling Spotify...\n"
+        local ADDITIONAL_APP="spotify spicetify-cli gimp inkscape blender libreoffice-still kdenlive obs-studio"
+        print_color $YELLOW "\nInstalling additional apps...\n"
+
+        pman -Sy --removemake --noconfirm --needed --sudoloop $ADDITIONAL_APP
 
         sudo chmod a+wr /opt/spotify
         sudo chmod a+wr /opt/spotify/Apps -R

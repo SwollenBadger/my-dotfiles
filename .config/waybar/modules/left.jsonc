@@ -4,7 +4,7 @@
         "orientation": "horizontal",
         "drawer": {
             "transition-duration": 500,
-            "transition-left-to-right": true,
+            "transition-left-to-right": false,
         },
         "modules": [
             "custom/control-center",
@@ -79,8 +79,8 @@
         "orientation": "horizontal",
         "modules": [
             "group/cpu-drawer",
-            "group/disk-drawer",
             "group/memory-drawer",
+            "group/disk-drawer",
             "custom/updater",
         ],
     },
@@ -92,14 +92,6 @@
         "orientation": "horizontal",
         "modules": ["custom/cpuicon", "cpu"],
     },
-    "group/disk-drawer": {
-        "drawer": {
-            "transition-duration": 500,
-            "transition-left-to-right": false,
-        },
-        "orientation": "horizontal",
-        "modules": ["custom/diskicon", "disk"],
-    },
     "group/memory-drawer": {
         "drawer": {
             "transition-duration": 500,
@@ -108,31 +100,39 @@
         "orientation": "horizontal",
         "modules": ["custom/memoryicon", "memory"],
     },
-    "custom/cpuicon": {
-        "format": "󰻠",
-        "tooltip": false,
+    "group/disk-drawer": {
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+        },
+        "orientation": "horizontal",
+        "modules": ["custom/diskicon", "disk"],
     },
     "cpu": {
         "format": "{usage}%",
         "tooltip": true,
     },
-    "custom/diskicon": {
-        "format": "󰋊",
-        "tooltip": false,
+    "memory": {
+        "format": "{percentage}%,{swapPercentage}%",
+        "tooltip": true,
+        "tooltip-format": "M:{avail},SM:{swapAvail}",
     },
     "disk": {
         "format": "{percentage_free}%",
         "tooltip": true,
         "tooltip-format": "{free}G",
     },
+    "custom/cpuicon": {
+        "format": "󰻠",
+        "tooltip": false,
+    },
     "custom/memoryicon": {
         "format": "󰍛",
         "tooltip": false,
     },
-    "memory": {
-        "format": "{percentage}%,{swapPercentage}%",
-        "tooltip": true,
-        "tooltip-format": "M:{avail},SM:{swapAvail}",
+    "custom/diskicon": {
+        "format": "󰋊",
+        "tooltip": false,
     },
     "custom/updater": {
         "format": "({} 󰇚)",
@@ -143,7 +143,10 @@
     // -------- Tray -------- //
     "group/tray-drawer": {
         "orientation": "horizontal",
-        "modules": ["tray"],
+        "modules": [
+            // "custom/trayicon",
+            "tray"
+        ],
     },
     "tray": {
         "spacing": 2,

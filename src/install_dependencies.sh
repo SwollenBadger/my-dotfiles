@@ -38,7 +38,7 @@ function dependencies() {
     local CORE_COMPONENT="ffmpegthumbnailer tumbler brightnessctl playerctl pamixer xdg-user-dirs gvfs"
     local LIB="colord libqalculate python-pyquery noise-suppression-for-voice imagemagick xorg-xhost"
     local UTILITY="tldr tmux tmux-plugin-manager hyprpicker grimblast cliphist swappy udiskie file-roller socat flatpak"
-    local APP="foot thunar mpv loupe gparted pavucontrol google-chrome firefox epiphany android-file-transfer okular gnome-text-editor gimp"
+    local CORE_APP="foot thunar mpv loupe pavucontrol google-chrome firefox epiphany android-file-transfer gnome-text-editor"
     local CMDLINE="eza jq fzf fd ripgrep bat wget"
 
     # -- Fonts package
@@ -68,11 +68,6 @@ function dependencies() {
         local IME_PACKAGE="fcitx5-im fcitx5-hangul fcitx5-mozc fcitx5-kkc"
     fi
 
-    # -- Spotify package
-    if [[ ! "$SPT" =~ [Nn] ]]; then
-        local SPOTIFY_PACKAGE="spotify spicetify-cli"
-    fi
-
     # Must install one by one to avoid conflict
     pman -Sy --removemake --noconfirm --needed --sudoloop \
         $DEV_TOOLS
@@ -81,9 +76,9 @@ function dependencies() {
         $CORE \
         $COMPONENT \
         $UTILITY \
-        $APP \
+        $CORE_APP
 
-        pman -Sy --removemake --noconfirm --needed --sudoloop \
+    pman -Sy --removemake --noconfirm --needed --sudoloop \
         $CORE_COMPONENT \
         $LIB \
         $MONO_EMOJI_FONTS \
@@ -96,7 +91,6 @@ function dependencies() {
         $BLUETOOTH_PACAKGE \
         $DOCKER_PACKAGE \
         $IME_PACKAGE \
-        $SPOTIFY_PACKAGE \
         $CMDLINE
 
     rofi_library
