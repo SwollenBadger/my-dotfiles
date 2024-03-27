@@ -29,7 +29,7 @@ function dependencies() {
     sleep 3
 
     # -- Dev util package
-    local DEV_TOOLS="pnpm composer fnm-bin rustup opam go git github-cli neovim visual-studio-code-bin"
+    local DEV_TOOLS="pnpm composer fnm-bin rustup opam go bun-bin git github-cli neovim visual-studio-code-bin"
 
     # -- Main package
     local CORE="hyprland waybar xdg-desktop-portal-hyprland zsh qt5-wayland qt6-wayland polkit-gnome sddm upower"

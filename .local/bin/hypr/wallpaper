@@ -18,7 +18,7 @@ function cycle() {
     _check_daemon=$(pgrep -x swww-daemon)
 
     if [ -z "$_check_daemon" ]; then
-        swww init
+        swww-daemon
     fi
 
     if [[ $# -eq 1 ]]; then

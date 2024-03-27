@@ -51,7 +51,7 @@ print_color $MAGENTA "blender\n"
 print_color $MAGENTA "libreoffice-still\n"
 print_color $MAGENTA "kdenlive\n"
 print_color $MAGENTA "obs-studio\n"
-print_color $MAGENTA "Proceed to install? (yes/no) "
+print_color $CYAN "Proceed to install? (yes/no) "
 read -n1 -rep '' ADD_APP
 
 echo -e
