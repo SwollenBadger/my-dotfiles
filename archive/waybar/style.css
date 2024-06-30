@@ -1,0 +1,40 @@
+@import './mocha.css';
+@import './styles/left.css';
+@import './styles/center.css';
+@import './styles/right.css';
+
+* {
+    border: none;
+    border-radius: 0px;
+    font-family:
+        JetBrainsMono NFP Medium,
+        monospace;
+    font-weight: 900;
+    min-height: 0;
+    letter-spacing: -0.068rem;
+    color: @text;
+    background-color: transparent;
+    box-shadow: none;
+    font-size: 11px;
+}
+
+tooltip {
+    background-color: @crust;
+    border-radius: 0.7rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: @charcoal;
+    color: @lavender;
+}
+
+window#waybar {
+    background-color: transparent;
+}
+
+window#waybar > box {
+    min-height: 0px;
+    background-color: alpha(@crust, 1);
+    margin-bottom: 0.4rem;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid @charcoal;
+}

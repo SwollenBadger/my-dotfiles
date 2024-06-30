@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ ! -d ~/.config/tmux/plugins/ ]; then \
+        notify-send -t 5000 "Tmux plugin" "Installing tmux plugin";
+
+    /usr/share/tmux-plugin-manager/bin/install_plugins all > ~/.tmux_install_log 2>&1;
+    tmux source-file ~/.config/tmux/tmux.conf;
+
+    notify-send -t 5000 "Tmux plugin" "Tmux plugin installed"
+fi
+

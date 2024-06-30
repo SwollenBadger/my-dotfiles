@@ -1,0 +1,67 @@
+* {
+    all: unset;
+    font-size: 1.3rem;
+    color: rgb(205, 214, 244);
+    font-weight: 900;
+    font-family:
+        JetBrainsMono NFP Medium,
+        Monospace;
+}
+
+#window,
+#match,
+#entry,
+#plugin,
+#main {
+    background: transparent;
+}
+
+box#main {
+    background: rgb(17, 17, 27);
+    border: 0.1rem solid #292c3c;
+    box-shadow: 0 0 0.2rem 0.1rem rgba(0, 0, 0, 0.5);
+    border-radius: 1em;
+    padding: 0.3rem;
+    margin: 0.4rem;
+}
+
+#entry {
+    background: rgb(30, 30, 46);
+    border-radius: 0.8rem;
+    margin: 0.5rem;
+    padding: 0.3rem 1.8rem;
+    min-height: 4.5rem;
+    border: 0.1rem solid #292c3c;
+}
+
+#plugin:hover,
+#plugin:selected {
+    background: rgb(24, 24, 37);
+}
+
+#match {
+    padding: 0.3rem;
+    border-radius: 0.8rem;
+    border: 0.1rem solid transparent;
+}
+#match box label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    min-width: 20rem;
+}
+
+#match:hover,
+#match:selected {
+    background-color: rgb(30, 30, 46);
+    border: 0.1rem solid #292c3c;
+}
+
+#match:hover box label,
+#match:selected box label {
+    color: rgb(205, 214, 244);
+}
+
+list > #plugin {
+    border-radius: 0.8rem;
+    margin: 0.5rem 0.3rem;
+}

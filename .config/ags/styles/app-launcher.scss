@@ -1,0 +1,71 @@
+.app-launcher {
+    .launcher {
+        @include window;
+        min-width: 38rem;
+        border-radius: $radius-large * 1.5;
+        .entry {
+            min-height: 10rem;
+            background-color: $red;
+            border-radius: $radius-large * 1.5;
+            background-origin: padding-box;
+            background-repeat: no-repeat;
+            background-size: cover;
+            box-shadow:
+                0 $large-gap $mauve,
+                $shadow;
+            .input {
+                min-height: 1.8rem;
+                background-color: $blue;
+                font-size: 1.1rem;
+                padding: $xtra-large-gap * 1.5 $large-gap * 1.5;
+                border-radius: $radius-medium;
+                background-color: $base;
+                margin: 2rem;
+                border: 0.1rem solid $surface0;
+                box-shadow: $shadow;
+                &:focus {
+                    box-shadow:
+                        $shadow,
+                        0 0 0 0.15rem $charcoal;
+                }
+            }
+        }
+        .applications {
+            min-height: 38rem;
+            margin-top: 2rem;
+            border-radius: $radius-large * 1.4;
+            .applications-holder {
+                .item {
+                    padding: $small-gap * 1.2 $small-gap;
+                    min-height: 4rem;
+                    border-radius: $radius-medium;
+                    border: 0.1rem solid transparent;
+                    &.selected {
+                        background-color: $base;
+                        border-color: $charcoal;
+                    }
+                    &:focus {
+                        background-color: $base;
+                        border-color: $charcoal;
+                    }
+                    &:hover {
+                        background-color: $base;
+                        border-color: $charcoal;
+                    }
+                    .icon {
+                        font-size: 3.5rem;
+                        margin-right: $small-gap;
+                    }
+                    .app-info {
+                        .name {
+                            font-size: 1.3rem;
+                        }
+                        .desc {
+                            color: rgba($color: $lavender, $alpha: 0.6);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

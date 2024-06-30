@@ -1,0 +1,33 @@
+menu {
+    @include window;
+    border-radius: 1.3rem;
+    menuitem {
+        border-radius: $radius-small;
+        &:hover {
+            background-color: $charcoal;
+        }
+    }
+}
+.systemtray {
+    .sys-tray {
+        @include window;
+        border-radius: $radius-large;
+        margin-right: 25rem;
+        .row {
+            margin-top: $medium-gap;
+            &:first-child {
+                margin-top: 0;
+            }
+            .tray-item {
+                padding: $medium-gap;
+                border-radius: $radius-small;
+                &:hover {
+                    background-color: $charcoal;
+                }
+                .item-icon {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+}

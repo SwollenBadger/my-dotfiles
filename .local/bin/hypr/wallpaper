@@ -1,0 +1,60 @@
+#!/bin/sh
+export SWWW_TRANSITION_FPS=60
+export SWWW_TRANSITION_STEP=8
+
+function apply_wallpaper() {
+    monitors=($(hyprctl monitors -j | jq -r ".[].name"))
+
+    for t in ${monitors[@]}; do
+        if [[ $# -eq 1  ]]; then
+            swww img -o $t --transition-step 24 --transition-type simple $(find ~/.wallpaper/{$1,include}/. -type f ! -name ".*" | shuf -n1)
+        else
+            swww img -o $t --transition-step 24 --transition-type simple $(find ~/.wallpaper/. -type f ! -name ".*" | shuf -n1)
+        fi
+    done
+}
+
+function cycle() {
+    _check_daemon=$(pgrep -x swww-daemon)
+
+    if [ -z "$_check_daemon" ]; then
+        if [ -n "$(ls $XDG_RUNTIME_DIR | grep swww)" ];then
+            rm $XDG_RUNTIME_DIR/swww*
+        fi
+
+        swww-daemon&
+    fi
+
+    if [[ $# -eq 1 ]]; then
+        apply_wallpaper $1
+    else
+        case $(date +%H) in
+            05 | 06 | 07 | 08 | 09 | 10) # Morning
+                apply_wallpaper morning
+                ;;
+            11 | 12 | 13 | 14) # Day
+                apply_wallpaper day
+                ;;
+            15 | 16 | 15 | 16 | 17 | 18) # Evening
+                apply_wallpaper evening
+                ;;
+            19 | 20 | 21 | 22 | 23 | 00 | 01 | 02 | 03 | 04) # Night
+                apply_wallpaper night
+                ;;
+        esac
+    fi
+}
+
+function daemon() {
+    while true; do
+        cycle $1
+        sleep 599
+    done
+}
+
+case "$1" in
+    "daemon") daemon $2
+        ;;
+    "cycle") cycle $2
+        ;;
+esac

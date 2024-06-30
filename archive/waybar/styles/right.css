@@ -1,0 +1,233 @@
+/* ----------- Network ----------- */
+#network {
+    color: @flamingo;
+    font-size: 0.75rem;
+    padding-right: 0.5rem;
+}
+
+#network.disconnected {
+    color: alpha(@flamingo, 0.5);
+}
+
+/* ----------- Bluetooth ----------- */
+@keyframes bluetooth {
+    from {
+        color: alpha(@flamingo, 0.5);
+    }
+
+    to {
+        color: alpha(@flamingo, 1);
+    }
+}
+
+#bluetooth {
+    padding-right: 0.5rem;
+    font-size: 0.8rem;
+}
+
+#bluetooth.on {
+    color: alpha(@flamingo, 0.5);
+}
+
+#bluetooth.off {
+    color: alpha(@flamingo, 0.5);
+}
+
+#bluetooth.connected {
+    color: alpha(@flamingo, 1);
+}
+
+#bluetooth.disabled {
+    color: alpha(@lavender, 0.5);
+}
+
+#bluetooth.discoverable,
+#bluetooth.discovering {
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#bluetooth.discoverable:not(.disconnected):not(.off):not(.disabled) {
+    animation-name: bluetooth;
+    animation-duration: 1s;
+}
+
+#bluetooth.discovering:not(.disconnected):not(.off):not(.disabled) {
+    animation-name: bluetooth;
+    animation-duration: 0.3s;
+}
+
+/* ----------- Swayidle ----------- */
+#custom-idle {
+    font-size: 1.3rem;
+    padding-right: 0.5rem;
+    color: alpha(@flamingo, 0.5);
+}
+
+#custom-idle.wake {
+    padding-right: 0.5rem;
+    color: @flamingo;
+}
+
+#custom-connection-separator {
+    margin-left: 0.3rem;
+    margin-right: 0.8rem;
+    color: alpha(@rosewater, 0.8);
+    font-size: 1rem;
+}
+
+#custom-audioicon {
+    font-size: 1.5rem;
+    color: @sky;
+    padding-right: 0.5rem;
+}
+
+#custom-audioicon.muted {
+    color: alpha(@sky, 0.5);
+}
+
+#pulseaudio {
+    color: @sky;
+    margin-right: 0.5rem;
+}
+
+#pulseaudio.muted {
+    color: alpha(@sky, 0.5);
+}
+
+/* ----------- Microphone ----------- */
+#custom-microphoneicon {
+    font-size: 1.3rem;
+    padding-right: 0.5rem;
+    color: @blue;
+}
+
+#custom-microphoneicon.muted {
+    color: alpha(@blue, 0.5);
+}
+
+#pulseaudio.microphone {
+    color: @sky;
+    color: alpha(@blue, 1);
+    margin-right: 0.5rem;
+}
+
+#pulseaudio.microphone.source-muted {
+    color: alpha(@blue, 0.5);
+}
+
+/* ----------- Backlight ----------- */
+#screen {
+    margin-right: 0.3rem;
+}
+
+#custom-screenicon {
+    font-size: 1.3rem;
+    color: @peach;
+    padding-right: 0.5rem;
+}
+
+#backlight {
+    color: @peach;
+    margin-right: 0.5rem;
+}
+
+/* ----------- Battery separator ----------- */
+#custom-battery-separator {
+    margin-right: 0.8rem;
+    font-size: 1.5rem;
+    color: shade(@charcoal, 1.5);
+}
+
+/* ----------- Battery ----------- */
+@keyframes charging {
+    from {
+        color: alpha(@rosewater, 0.5);
+    }
+
+    to {
+        color: alpha(@rosewater, 1);
+    }
+}
+
+@keyframes warning {
+    from {
+        color: alpha(@yellow, 0.5);
+    }
+
+    to {
+        color: alpha(@yellow, 1);
+    }
+}
+
+@keyframes critical {
+    from {
+        color: alpha(@red, 0.5);
+    }
+
+    to {
+        color: alpha(@red, 1);
+    }
+}
+
+#battery.charging,
+#battery.warning,
+#battery.critical,
+#battery.bat2.charging,
+#battery.bat2.warning,
+#battery.bat2.critical {
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.charging,
+#battery.bat2.charging {
+    animation-name: charging;
+    animation-duration: 1s;
+}
+
+#battery.warning,
+#battery.bat2.warning {
+    animation-name: warning;
+    animation-duration: 0.6s;
+}
+
+#battery.critical,
+#battery.bat2.critical {
+    animation-name: critical;
+    animation-duration: 0.3s;
+}
+
+#battery.bat2 {
+    margin-right: 0.8rem;
+    color: @blue;
+    font-size: 0.88rem;
+}
+
+#battery {
+    margin-right: 0.8rem;
+    color: @lavender;
+    font-size: 0.88rem;
+}
+
+/* ----------- Weather ----------- */
+#custom-weather {
+    color: @mauve;
+    margin-right: 0.35rem;
+    font-size: 0.9rem;
+}
+
+/* ----------- Clock ----------- */
+#custom-clockicon {
+    font-size: 1.6rem;
+    margin-right: 0.8rem;
+    color: @mauve;
+}
+
+#clock {
+    font-size: 0.95rem;
+    margin-right: 0.5rem;
+    color: @mauve;
+}

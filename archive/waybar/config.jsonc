@@ -1,0 +1,31 @@
+{
+    "layer": "top",
+    "position": "top",
+    "exclusive": true,
+    "modules-left": [
+        "group/menu",
+        "hyprland/workspaces",
+        "group/hardware-stat",
+        "keyboard-state",
+        "group/tray-drawer",
+        "privacy",
+    ],
+    "modules-center": ["hyprland/window"],
+    "modules-right": [
+        "group/connection",
+        "group/audio",
+        "group/microphone",
+        "group/screen",
+        "custom/battery-separator",
+        "battery",
+        "battery#bat2",
+        "custom/weather",
+        "group/calendar",
+    ],
+    "height": 0,
+    "include": [
+        "~/.config/waybar/modules/left.jsonc",
+        "~/.config/waybar/modules/center.jsonc",
+        "~/.config/waybar/modules/right.jsonc",
+    ],
+}

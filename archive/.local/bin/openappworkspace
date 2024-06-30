@@ -1,0 +1,16 @@
+#!/bin/bash
+
+workspace_id=$1
+class=$2
+program=$3
+
+shift 3  # Shift the first two arguments (workspace_id and program) out
+
+window_address=($(hyprctl clients -j | jq -r --arg class "$class" --arg workspace_id "$workspace_id" '.[] | select(.workspace.id == ($workspace_id | tonumber)) | select(.class == $class) | .address'))
+
+if [[ -n $window_address  ]]; then
+    hyprctl --batch "dispatch workspace $workspace_id;"
+else
+    hyprctl dispatch workspace $workspace_id
+    "$program" "$@"
+fi

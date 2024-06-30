@@ -1,0 +1,11 @@
+#!/bin/bash
+dnd_status=$(makoctl mode | grep "do-not-disturb")
+
+if [[ $dnd_status == "" ]]; then
+    notify-send -t 1500 -a "dnd" -h string:x-canonical-private-synchronous:sys-notify "Enabling do not disturb" "Enjoy the silence 🤫"
+    sleep 1.5
+    makoctl mode -a do-not-disturb
+else
+    notify-send -t 1500 -a "dnd" -h string:x-canonical-private-synchronous:sys-notify "Disabling do not disturb" "Welcome back 😄"
+    makoctl mode -r do-not-disturb
+fi

@@ -1,0 +1,78 @@
+@mixin paint-osd($color) {
+    .icon {
+        color: $color;
+    }
+    .level-percent {
+        color: $color;
+    }
+    .level {
+        block {
+            &.filled {
+                background-color: $color;
+            }
+        }
+    }
+}
+
+.osd {
+    .osd-drawer {
+        min-width: 15rem;
+        min-height: 15rem;
+        .osd-popup {
+            @include window;
+            min-width: 20rem;
+            min-height: 4rem;
+            margin-bottom: 8rem;
+            border-radius: $radius-large;
+            .icon {
+                margin-right: $small-gap;
+                min-width: 3rem;
+                font-size: 3rem;
+            }
+            .level-percent {
+                font-size: 1.5rem;
+                margin-right: $xtra-small-gap;
+                margin-left: $medium-gap;
+            }
+            .level {
+                block {
+                    background-color: $base;
+                    border-radius: $radius;
+                    transition: 0.3s;
+                    min-height: 1.4em;
+                    &.filled {
+                        border-radius: $radius;
+                    }
+                }
+            }
+            &.muted {
+                .icon {
+                    color: rgba($color: $lavender, $alpha: 0.6);
+                }
+                .level-percent {
+                    color: rgba($color: $lavender, $alpha: 0.6);
+                }
+                .level {
+                    block {
+                        &.filled {
+                            background-color: rgba(
+                                $color: $lavender,
+                                $alpha: 0.6
+                            );
+                            border-radius: $radius;
+                        }
+                    }
+                }
+            }
+            &.speaker {
+                @include paint-osd($sapphire);
+            }
+            &.microphone {
+                @include paint-osd($sky);
+            }
+            &.brightness {
+                @include paint-osd($teal);
+            }
+        }
+    }
+}

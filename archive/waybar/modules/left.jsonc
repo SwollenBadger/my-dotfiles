@@ -1,0 +1,168 @@
+{
+    // -------- Group Menu -------- //
+    "group/menu": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+        },
+        "modules": [
+            "custom/control-center",
+            "custom/shutdown",
+            "custom/reboot",
+            "custom/suspend",
+            "custom/hibernate",
+            "custom/logout",
+            "custom/app-menu",
+        ],
+    },
+    // -------- Menu -------- //
+    "custom/control-center": {
+        "format": "",
+        "tooltip": false,
+    },
+    // -------- App menu -------- //
+    "custom/app-menu": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "rofi -show drun -theme ~/.config/rofi/rofi-launcher.rasi",
+    },
+    "custom/shutdown": {
+        "format": "",
+        "on-click": "~/.local/bin/rofi/powercontrol shutdown",
+        "tooltip": false,
+    },
+    "custom/reboot": {
+        "format": "",
+        "on-click": "~/.local/bin/rofi/powercontrol reboot",
+        "tooltip": false,
+    },
+    "custom/suspend": {
+        "format": "󰙦",
+        "on-click": "~/.local/bin/rofi/powercontrol suspend",
+        "tooltip": false,
+    },
+    "custom/hibernate": {
+        "format": "󰥹",
+        "on-click": "~/.local/bin/rofi/powercontrol hibernate",
+        "tooltip": false,
+    },
+    "custom/logout": {
+        "format": "",
+        "on-click": "~/.local/bin/rofi/powercontrol logout",
+        "tooltip": false,
+    },
+    // -------- Workspace -------- //
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "all-outputs": true,
+        "active-only": false,
+        "show-special": true,
+        "format-icons": {
+            "active": "",
+            "empty": "",
+            "persistent": "",
+            "default": "",
+            "special": "󰴈",
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+        },
+        "persistent-workspaces": {
+            "*": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        },
+    },
+    // -------- Hardware -------- //
+    "group/hardware-stat": {
+        "orientation": "horizontal",
+        "modules": [
+            "group/cpu-drawer",
+            "group/memory-drawer",
+            "group/disk-drawer",
+            "custom/updater",
+        ],
+    },
+    "group/cpu-drawer": {
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+        },
+        "orientation": "horizontal",
+        "modules": ["custom/cpuicon", "cpu"],
+    },
+    "group/memory-drawer": {
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+        },
+        "orientation": "horizontal",
+        "modules": ["custom/memoryicon", "memory"],
+    },
+    "group/disk-drawer": {
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+        },
+        "orientation": "horizontal",
+        "modules": ["custom/diskicon", "disk"],
+    },
+    "cpu": {
+        "format": "{usage}%",
+        "tooltip": true,
+    },
+    "memory": {
+        "format": "{percentage}%,{swapPercentage}%",
+        "tooltip": true,
+        "tooltip-format": "M:{avail},SM:{swapAvail}",
+    },
+    "disk": {
+        "format": "{percentage_free}%",
+        "tooltip": true,
+        "tooltip-format": "{free}G",
+    },
+    "custom/cpuicon": {
+        "format": "󰻠",
+        "tooltip": false,
+    },
+    "custom/memoryicon": {
+        "format": "󰍛",
+        "tooltip": false,
+    },
+    "custom/diskicon": {
+        "format": "󰋊",
+        "tooltip": false,
+    },
+    "custom/updater": {
+        "format": "({} 󰇚)",
+        "exec": "yay -Qua | wc -l",
+        "interval": 720,
+        "tooltip": false,
+    },
+    // -------- Tray -------- //
+    "group/tray-drawer": {
+        "orientation": "horizontal",
+        "modules": [
+            // "custom/trayicon",
+            "tray"
+        ],
+    },
+    "tray": {
+        "spacing": 2,
+        "icon-size": 18,
+    },
+    "custom/trayicon": {
+        "format": "󰲽 ~",
+        "tooltip": false,
+    },
+    "keyboard-state": {
+        "numlock": false,
+        "capslock": true,
+        "format": "{icon}",
+        "format-icons": {
+            "locked": "󰘲",
+            "unlocked": "",
+        },
+    },
+}

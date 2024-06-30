@@ -1,0 +1,225 @@
+@keyframes warning {
+    from {
+        color: rgba($color: $yellow, $alpha: 0.5);
+    }
+
+    to {
+        color: rgba($color: $yellow, $alpha: 1);
+    }
+}
+
+@keyframes critical {
+    from {
+        color: rgba($color: $red, $alpha: 0.5);
+    }
+
+    to {
+        color: rgba($color: $red, $alpha: 1);
+    }
+}
+
+.module-end {
+    .keyboard-layout {
+        .label {
+            color: rgba($color: $lavender, $alpha: 0.5);
+            margin-right: $small-gap;
+            font-size: 0.9rem;
+        }
+        .icon {
+            margin-right: $small-gap * 2;
+            color: rgba($color: $lavender, $alpha: 0.5);
+            font-size: 0.9rem;
+        }
+    }
+
+    .tray-toggle {
+        margin-right: $small-gap;
+        padding: 0 $xtra-small-gap;
+        border-radius: $radius-small;
+        label {
+            font-size: 1rem;
+            color: rgba($color: $lavender, $alpha: 0.8);
+            transition: 0.3s;
+        }
+        &:hover {
+            label {
+                font-size: 1.2rem;
+                color: $lavender;
+            }
+        }
+    }
+
+    .network-settings-button {
+        min-height: 1.8rem;
+        border-radius: $radius-small + 0.2;
+        padding: 0 $small-gap;
+        &:hover {
+            background-color: $pink;
+            label {
+                color: $charcoal;
+                &.disconnected {
+                    color: $charcoal;
+                }
+            }
+        }
+        label {
+            font-size: 1.2rem;
+            margin: 0 $xtra-small-gap/2;
+        }
+        .bluetooth-icon {
+            color: $pink;
+            &.disconnected {
+                color: rgba($color: $lavender, $alpha: 0.5);
+            }
+        }
+        .wifi-icon {
+            color: $flamingo;
+            &.disconnected {
+                color: rgba($color: $lavender, $alpha: 0.5);
+            }
+        }
+        .wired-icon {
+            color: $rosewater;
+            &.disconnected {
+                color: rgba($color: $lavender, $alpha: 0.5);
+            }
+        }
+    }
+
+    .control-settings-button {
+        min-height: 1.8rem;
+        border-radius: $radius-small + 0.2;
+        margin-right: $small-gap;
+        padding: 0 $small-gap;
+        label {
+            font-size: 1.2rem;
+            margin: 0 $xtra-small-gap/2;
+        }
+        &:hover {
+            background-color: $sapphire;
+            .brightness-icon {
+                color: $mantle;
+            }
+            .speaker-icon {
+                &.muted {
+                    color: $mantle;
+                }
+                &.low {
+                    color: $mantle;
+                }
+                &.medium {
+                    color: $mantle;
+                }
+                &.high {
+                    color: $mantle;
+                }
+            }
+            .microphone-icon {
+                &.muted {
+                    color: $mantle;
+                }
+                &.low {
+                    color: $mantle;
+                }
+                &.medium {
+                    color: $mantle;
+                }
+                &.high {
+                    color: $mantle;
+                }
+            }
+        }
+        .speaker-icon {
+            color: $sapphire;
+            &.muted {
+                color: rgba($color: $lavender, $alpha: 0.6);
+            }
+            &.low {
+                color: rgba($color: $sapphire, $alpha: 0.7);
+            }
+            &.medium {
+                color: rgba($color: $sapphire, $alpha: 0.85);
+            }
+            &.high {
+                color: rgba($color: $sapphire, $alpha: 1);
+            }
+        }
+        .microphone-icon {
+            color: $sky;
+            &.muted {
+                color: rgba($color: $lavender, $alpha: 0.6);
+            }
+            &.low {
+                color: rgba($color: $sky, $alpha: 0.7);
+            }
+            &.medium {
+                color: rgba($color: $sky, $alpha: 0.85);
+            }
+            &.high {
+                color: rgba($color: $sky, $alpha: 1);
+            }
+        }
+        .brightness-icon {
+            color: $teal;
+        }
+    }
+
+    .battery {
+        margin-right: $medium-gap;
+        label {
+            color: $blue;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+        &.critical {
+            label {
+                animation-name: critical;
+                animation-duration: 0.3s;
+            }
+        }
+        &.warning {
+            label {
+                animation-name: warning;
+                animation-duration: 0.6s;
+            }
+        }
+        .battery-icon {
+            margin-right: $xtra-small-gap;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .battery-status {
+            margin-right: $small-gap;
+            font-size: 1rem;
+        }
+        .battery-percent {
+            font-size: 1rem;
+        }
+    }
+
+    .clock {
+        min-height: 1.8rem;
+        padding: 0 $small-gap;
+        border-radius: $radius-small + 0.2;
+        &:hover {
+            background-color: $mauve;
+            label {
+                color: $charcoal;
+            }
+        }
+        label {
+            color: $mauve;
+        }
+        .weather {
+            margin-right: $small-gap;
+        }
+        .time {
+            margin-right: $small-gap;
+        }
+        .time-icon {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+    }
+}

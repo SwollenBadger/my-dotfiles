@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+iDIR="$HOME/.config/mako/icons"
+
+# Get brightness
+function get_backlight() {
+    echo $(brightnessctl -m | cut -d, -f4)
+}
+
+# Get icons
+function get_icon() {
+    current=$(get_backlight | sed 's/%//')
+    if [ "$current" -le "20" ]; then
+        icon="$iDIR/screen/low.png"
+    elif [ "$current" -le "60" ]; then
+        icon="$iDIR/screen/medium.png"
+    else
+        icon="$iDIR/screen/high.png"
+    fi
+
+    echo $icon
+}
+
+# Notify
+function notify_user() {
+    notify-send -a "brightness-osd" -t 800 -h string:x-canonical-private-synchronous:sys-notify -u low -i "$icon" "$1" "Backlight: ($(get_backlight))"
+}
+
+# Change brightness
+function change_backlight() {
+    brightnessctl set "$1" -n "5%" && get_icon && notify_user "$2"
+}
+
+function backlight_inc() {
+    change_backlight "+5%" "Increasing Backlight"
+}
+
+function backlight_dec() {
+    change_backlight "5%-" "Decreasing Backlight"
+}
+
+# Execute accordingly
+case "$1" in
+    "--get")
+        get_backlight
+        ;;
+    "--inc")
+        backlight_inc
+        ;;
+    "--dec")
+        backlight_dec
+        ;;
+    *)
+        get_backlight
+        ;;
+esac

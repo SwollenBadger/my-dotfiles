@@ -1,0 +1,7 @@
+#!/bin/bash
+
+killall rofi ||\
+    rofi -modi emoji\
+    -show emoji -emoji-format '{emoji}'\
+    -no-show-icons -display-emoji " "\
+    -theme ~/.config/rofi/rofi-emoji.rasi\

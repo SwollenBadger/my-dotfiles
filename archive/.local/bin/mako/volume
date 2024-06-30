@@ -1,0 +1,127 @@
+#!/bin/bash
+
+iDIR="$HOME/.config/mako/icons"
+
+# Get Volume
+function get_volume() {
+    volume=$(pamixer --get-volume)
+    echo "$volume"
+}
+
+# ------------------------------------------ Audio ------------------------------------------ #
+# Get icons
+function get_icon() {
+    current=$(get_volume)
+    if [ "$current" -le "20" ]; then
+        icon="$iDIR/audio/low.png"
+    elif [ "$current" -le "75" ]; then
+        icon="$iDIR/audio/medium.png"
+    else
+        icon="$iDIR/audio/high.png"
+    fi
+
+    echo $icon
+}
+
+# Notify
+function notify_user() {
+    notify-send -a "audio-osd" -t 800 -h string:x-canonical-private-synchronous:sys-notify -u low -i "$(get_icon)" "$1" "Volume: ($(get_volume)%)"
+}
+
+# Increase Volume
+function inc_volume() {
+    if [ "$(pamixer --get-mute)" == "true" ]; then
+        pamixer -u
+    fi
+
+    pamixer -i 1 && notify_user "Increasing Audio Volume"
+}
+
+# Decrease Volume
+function dec_volume() {
+    if [ "$(pamixer --get-mute)" == "true" ]; then
+        pamixer -u
+    fi
+
+    pamixer -d 1 && notify_user "Decreasing Audio Volume"
+}
+
+# Toggle Mute
+function toggle_mute() {
+    if [ "$(pamixer --get-mute)" == "false" ]; then
+        pamixer -m && notify-send -a "audio-osd" -t 800 -h string:x-canonical-private-synchronous:sys-notify -u low -i "$iDIR/audio/muted.png" "Switch Audio Volume" "Mute"
+    elif [ "$(pamixer --get-mute)" == "true" ]; then
+        pamixer -u && notify-send -a "audio-osd" -t 800 -h string:x-canonical-private-synchronous:sys-notify -u low -i "$(get_icon)" "Switch Audio Volume" "Unmute"
+    fi
+}
+
+# ------------------------------------------ Mic ------------------------------------------ #
+# Get icons
+function get_mic_icon() {
+    current=$(pamixer --default-source --get-volume)
+
+    if [ "$current" -le "20" ]; then
+        icon="$iDIR/mic/low.png"
+    elif [ "$current" -le "60" ]; then
+        icon="$iDIR/mic/medium.png"
+    else
+        icon="$iDIR/mic/high.png"
+    fi
+
+    echo $icon
+}
+# Notify
+function notify_mic_user() {
+    notify-send -a "mic-osd" -t 800 -h string:x-canonical-private-synchronous:sys-notify -u low -i "$(get_mic_icon)" "$1" "Mic Volume: ($(pamixer --default-source --get-volume)%)"
+}
+
+# Increase MIC Volume
+function inc_mic_volume() {
+    if [ "$(pamixer --default-source --get-mute)" == "true" ]; then
+        pamixer --default-source -u
+    fi
+
+    pamixer --default-source -i 1 && notify_mic_user "Increasing Mic volume"
+}
+
+# Decrease MIC Volume
+function dec_mic_volume() {
+    if [ "$(pamixer --default-source --get-mute)" == "true" ]; then
+        pamixer --default-source -u
+    fi
+
+    pamixer --default-source -d 1 && notify_mic_user "Decreasing Mic volume"
+}
+
+# Toggle Mic
+function toggle_mic() {
+    if [ "$(pamixer --default-source --get-mute)" == "false" ]; then
+        pamixer --default-source -m && notify-send -a "mic-osd" -t 800 -h string:x-canonical-private-synchronous:sys-notify -u low -i "$iDIR/mic/muted.png" "Switch Mic Volume" "Mute"
+    elif [ "$(pamixer --default-source --get-mute)" == "true" ]; then
+        pamixer --default-source -u && notify-send -a "mic-osd" -t 800 -h string:x-canonical-private-synchronous:sys-notify -u low -i "$(get_mic_icon)" "Switch Mic Volume" "Unmute"
+    fi
+}
+
+# Execute accordingly
+if [[ "$1" == "--get" ]]; then
+    get_volume
+elif [[ "$1" == "--get-icon" ]]; then
+    get_icon
+elif [[ "$1" == "--get-mic-icon" ]]; then
+    get_mic_icon
+elif [[ "$1" == "--inc" ]]; then
+    inc_volume;pkill -RTMIN+19 waybar;
+elif [[ "$1" == "--dec" ]]; then
+    dec_volume;pkill -RTMIN+19 waybar;
+elif [[ "$1" == "--toggle" ]]; then
+    toggle_mute;pkill -RTMIN+19 waybar;
+elif [[ "$1" == "--mic-inc" ]]; then
+    inc_mic_volume;pkill -RTMIN+20 waybar;
+elif [[ "$1" == "--mic-dec" ]]; then
+    dec_mic_volume;pkill -RTMIN+20 waybar;
+elif [[ "$1" == "--toggle-mic" ]]; then
+    toggle_mic;pkill -RTMIN+20 waybar;
+else
+    get_volume
+fi
+

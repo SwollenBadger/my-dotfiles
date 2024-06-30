@@ -1,0 +1,29 @@
+#!/bin/sh
+
+swayidle_status=$(pidof swayidle)
+
+icon(){
+  if [[ -n "$swayidle_status" ]]; then icon="󰈈"; else icon='󰈈'; fi
+  if [[ -n "$swayidle_status" ]]; then class='["swayidle"]'; else class='["swayidle","wake"]'; fi
+
+  printf '{"text": "%s", "class": %s}' "$icon" "$class" | jq --unbuffered --compact-output
+}
+
+toggle(){
+  if [[ -n "$swayidle_status" ]]; then
+    notify-send -a "swayidle" -h string:x-canonical-private-synchronous:sys-notify "Swayidle disabled" "Device will not sleep"
+    pkill swayidle
+  else
+    notify-send -a "swayidle" -h string:x-canonical-private-synchronous:sys-notify "Swayidle enabled" "Device will sleep"
+    swayidle
+  fi
+}
+
+case "$1" in
+  "icon")
+    icon
+    ;;
+  "toggle")
+    toggle
+    ;;
+esac

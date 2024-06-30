@@ -1,0 +1,31 @@
+#!/bin/sh
+
+function get_audioicon() {
+    audio_volume=$(pamixer --get-volume)
+    audio_status=$(pamixer --get-mute)
+
+    # if [ "$audio_status" == "true" ]; then icon="<span></span><span size='30%'> </span><span rise='3pt' size='60%'></span>"; else icon=''; fi
+    if [ "$audio_status" == "true" ]; then icon=""; else icon=''; fi
+    if [ "$audio_status" == "true" ]; then class='["audio","muted"]'; else class='["audio"]'; fi
+
+    printf '{"text": "%s", "class": %s}' "$icon" "$class" | jq --unbuffered --compact-output
+}
+
+function get_micicon() {
+    audio_volume=$(pamixer --default-source --get-volume)
+    audio_status=$(pamixer --default-source --get-mute)
+
+    if [ "$audio_status" == "true" ]; then icon=""; else icon=''; fi
+    if [ "$audio_status" == "true" ]; then class='["mic","muted"]'; else class='["mic"]'; fi
+
+    printf '{"text": "%s", "class": %s}' "$icon" "$class" | jq --unbuffered --compact-output
+}
+
+case "$1" in
+    "audio")
+        get_audioicon
+        ;;
+    "mic")
+        get_micicon
+        ;;
+esac

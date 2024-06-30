@@ -1,0 +1,41 @@
+[Groups/0]
+# Group Name
+Name=Language
+# Layout
+Default Layout=id
+# Default Input Method
+DefaultIM=kkc
+
+[Groups/0/Items/0]
+# Name
+Name=keyboard-id
+# Layout
+Layout=
+
+[Groups/0/Items/1]
+# Name
+Name=keyboard-us
+# Layout
+Layout=
+
+[Groups/0/Items/2]
+# Name
+Name=kkc
+# Layout
+Layout=
+
+[Groups/0/Items/3]
+# Name
+Name=mozc
+# Layout
+Layout=
+
+[Groups/0/Items/4]
+# Name
+Name=hangul
+# Layout
+Layout=
+
+[GroupOrder]
+0=Language
+

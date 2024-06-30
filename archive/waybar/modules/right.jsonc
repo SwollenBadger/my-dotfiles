@@ -1,0 +1,229 @@
+{
+    // -------- Network -------- //
+    "group/connection": {
+        "orientation": "horizontal",
+        "modules": [
+            "network",
+            "bluetooth",
+            "custom/idle",
+            "custom/connection-separator",
+        ],
+    },
+    // -------- Bluetooth -------- //
+    "bluetooth": {
+        "format": "",
+        "format-on": "<span size='135%'>󰂯</span>",
+        "format-connected": "<span size='135%'>󰂱</span>",
+        "format-disabled": "<span size='135%'>󰂲</span>",
+        "format-off": "<span size='135%'>󰂲</span>",
+        "format-connected-battery": "<span rise='1pt'>{device_battery_percentage}%</span> <span size='135%'>󰂱</span>",
+        "on-click-right": "blueman-manager",
+    },
+    // -------- Network -------- //
+    "network": {
+        "format": "{format}",
+        "format-wifi": "<span rise='0.5pt'>{essid} {bandwidthDownBytes}</span> <span size='125%'>{icon}</span>",
+        "format-ethernet": "<span rise='0.5pt'>{bandwidthDownBytes}</span> <span size='125%'>{icon}</span>",
+        "format-link": "<span rise='0.5pt'>{bandwidthDownBytes}</span> <span size='125%'>{icon}</span>",
+        "format-disconnected": "No connection",
+        "format-icons": {
+            "wifi": ["󰤟", "󰤢", "󰤥", "󰤨"],
+            "ethernet": "󰈀",
+            "link": "󰌷",
+        },
+        "interval": 1,
+        "tooltip": false,
+        "max-length": 40,
+        "on-click-right": "killall nm-connection-editor || nm-connection-editor",
+    },
+    "custom/connection-separator": {
+        "format": "~",
+        "tooltip": false,
+    },
+    "custom/idle": {
+        "format": "{}",
+        "tooltip": false,
+        "return-type": "json",
+        "signal": 89,
+        "interval": 1,
+        "exec": "~/.local/bin/waybar/idle icon",
+        "on-click": "~/.local/bin/waybar/idle toggle",
+    },
+    // -------- Audio -------- //
+    "group/audio": {
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+        },
+        "orientation": "horizontal",
+        "modules": ["custom/audioicon", "pulseaudio"],
+    },
+    "custom/audioicon": {
+        "format": "{}",
+        "tooltip": false,
+        "return-type": "json",
+        "signal": 19,
+        "interval": 1,
+        "exec": "~/.local/bin/waybar/volume_icon audio",
+        "on-click": "~/.local/bin/mako/volume --toggle",
+        "on-scroll-up": "~/.local/bin/mako/volume --inc",
+        "on-scroll-down": "~/.local/bin/mako/volume --dec",
+        "on-click-right": "killall pavucontrol || pavucontrol -t 3",
+    },
+    "pulseaudio": {
+        "format-muted": "Muted",
+        "tooltip": false,
+        "interval": 1,
+        "on-click": "~/.local/bin/mako/volume --toggle",
+        "on-scroll-up": "~/.local/bin/mako/volume --inc",
+        "on-scroll-down": "~/.local/bin/mako/volume --dec",
+        "on-click-right": "killall pavucontrol || pavucontrol -t 3",
+    },
+    // -------- Microphone -------- //
+    "group/microphone": {
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+        },
+        "orientation": "horizontal",
+        "modules": ["custom/microphoneicon", "pulseaudio#microphone"],
+    },
+    "custom/microphoneicon": {
+        "format": "{}",
+        "tooltip": false,
+        "return-type": "json",
+        "signal": 20,
+        "interval": 1,
+        "exec": "~/.local/bin/waybar/volume_icon mic",
+        "on-click": "~/.local/bin/mako/volume --toggle-mic",
+        "on-scroll-up": "~/.local/bin/mako/volume --mic-inc",
+        "on-scroll-down": "~/.local/bin/mako/volume --mic-dec",
+        "on-click-right": "killall pavucontrol || pavucontrol -t 4",
+    },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "{volume}%",
+        "format-source-muted": "Muted",
+        "tooltip": false,
+        "interval": 1,
+        "on-click": "~/.local/bin/mako/volume --toggle-mic",
+        "on-scroll-up": "~/.local/bin/mako/volume --mic-inc",
+        "on-scroll-down": "~/.local/bin/mako/volume --mic-dec",
+        "on-click-right": "killall pavucontrol || pavucontrol -t 4",
+    },
+    // -------- Backlight -------- //
+    "group/screen": {
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+        },
+        "orientation": "horizontal",
+        "modules": ["custom/screenicon", "backlight"],
+    },
+    "custom/screenicon": {
+        "tooltip": false,
+        "format": "󰖨",
+        "on-scroll-up": "~/.local/bin/mako/backlight --inc",
+        "on-scroll-down": "~/.local/bin/mako/backlight --dec",
+    },
+    "backlight": {
+        "tooltip": false,
+        "on-scroll-up": "~/.local/bin/mako/backlight --inc",
+        "on-scroll-down": "~/.local/bin/mako/backlight --dec",
+    },
+    "custom/battery-separator": {
+        "format": "",
+        "tooltip": false,
+    },
+    // -------- Battery -------- //
+    "battery": {
+        "bat": "BAT0",
+        "interval": 1,
+        "states": {
+            "warning": 30,
+            "critical": 15,
+        },
+        "format": "{capacity}% {icon}",
+        "format-plugged": "{capacity}% 󰚥 {icon}",
+        "format-charging": "{capacity}% 󱐋 {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25,
+    },
+    "battery#bat2": {
+        "bat": "BAT1",
+        "interval": 1,
+        "states": {
+            "warning": 30,
+            "critical": 15,
+        },
+        "format": "{capacity}% {icon}",
+        "format-plugged": "{capacity}% 󰚥 {icon}",
+        "format-charging": "{capacity}% 󱐋 {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25,
+    },
+    //------- Updater -------- //
+    "custom/weather": {
+        "format": "{}",
+        "exec": "python ~/.local/bin/waybar/weather.py",
+        "restart-interval": 300,
+        "return-type": "json",
+        "on-click": "xdg-open https://weather.com/en-IN/weather/today/l/7aa9948c1f38a939dca8a94491a568c8b03543fe2fcf3c593c016b0907c2a216",
+    },
+    //------- Clock -------- //
+    "group/calendar": {
+        "orientation": "horizontal",
+        "modules": ["clock", "custom/clockicon"],
+    },
+    "custom/clockicon": {
+        "format": "󱑊",
+        "tooltip": false,
+    },
+    "clock": {
+        "format": "{:%I:%M}",
+        "tooltip-format": "<span size='medium' underline='single' color='#f5c2e7'>{:%A %d %B %Y%n%n}</span>{calendar}",
+        "interval": 1,
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "",
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span line_height='1pt' color='#89b4fa'><b><i>{}</i></b></span>",
+                "days": "<span line_height='1pt' weight='light' color='#bac2de'>{}</span>",
+                "weekdays": "<span line_height='2pt' color='#b4befe'><b>{}</b></span>",
+                "today": "<span color='#fab387'><b>{}</b></span>",
+            },
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down",
+        },
+    },
+    "privacy": {
+        "icon-spacing": 4,
+        "icon-size": 16,
+        "transition-duration": 0,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true,
+                "tooltip-icon-size": 24,
+            },
+            {
+                "type": "audio-out",
+                "tooltip": true,
+                "tooltip-icon-size": 24,
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true,
+                "tooltip-icon-size": 24,
+            },
+        ],
+    },
+}

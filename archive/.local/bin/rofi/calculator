@@ -1,0 +1,10 @@
+#!/bin/bash
+
+killall rofi ||\
+    rofi -modes "calc" -modi calc\
+    -show calc -no-show-match -no-sort -automatic-save-to-history -calc-command "echo -n '{result}' | wl-copy"\
+    -no-show-icons -display-calc "󰪚 "\
+    -theme ~/.config/rofi/global.rasi\
+    -theme-str 'inputbar{background-image: url("~/.config/rofi/imgs/doodle1.jpg",width);padding: 2% 1%;}'\
+    -theme-str "entry{horizontal-align: 1;}"\
+    -theme-str "message{border:0px 0px 1px dash 0px;border-color:@charcoal; padding: 0px 0px 8px 0px; margin:0px 4px 12px 4px;}"\

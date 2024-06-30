@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if systemctl status tp-battery-mode; then
+    systemctl stop tp-battery-mode
+    notify-send -t 1500 -a "dnd" -h string:x-canonical-private-synchronous:sys-notify "Battery treshold turned off"
+else
+    systemctl start tp-battery-mode
+    notify-send -t 1500 -a "dnd" -h string:x-canonical-private-synchronous:sys-notify "Battery treshold turned on"
+fi

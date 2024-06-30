@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if tmux has-session -t main 2>/dev/null; then
+    foot -e tmux attach-session -t main
+else
+    foot -e tmux new-session -s main
+fi
+

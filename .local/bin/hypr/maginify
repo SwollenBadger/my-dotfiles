@@ -1,0 +1,45 @@
+#!/bin/env bash
+
+IN_VALUE=0.03
+OUT_VALUE=0.03
+
+function zoom() {
+    local zoom_mode=$1
+    local current_zoom_value=$(hyprctl -j getoption misc:cursor_zoom_factor | jq -r '.float')
+    local sensitivity=$(hyprctl -j getoption input:sensitivity | jq -r '.float')
+
+    if [[ "$1" == "in" ]]; then
+        zoom_value=$(awk "BEGIN {printf \"%.2f\", $current_zoom_value + $IN_VALUE}")
+        sensitivity_value=$(awk "BEGIN {printf \"%.2f\", $sensitivity + ($IN_VALUE + 0.05)}")
+    elif [[ "$1" == "out" ]]; then
+        if awk -v n1="$current_zoom_value" -v n2="1" 'BEGIN { if (n1 > n2) exit 0; else exit 1 }'; then
+            zoom_value=$(awk "BEGIN {printf \"%.2f\", $current_zoom_value - $IN_VALUE}")
+            sensitivity_value=$(awk "BEGIN {printf \"%.2f\", $sensitivity - ($IN_VALUE + 0.05)}")
+        else
+            zoom_value=$current_zoom_value
+            sensitivity_value=$sensitivity
+        fi
+    else
+        echo "Zoom mode not found !!"
+    fi
+
+    hyprctl keyword misc:cursor_zoom_factor $zoom_value
+    hyprctl keyword input:sensitivity $sensitivity_value
+}
+
+function reset_zoom() {
+    hyprctl keyword misc:cursor_zoom_factor 1
+    hyprctl keyword input:sensitivity -0.2
+}
+
+function usage() {
+    echo -e "Usage: "
+    echo -e "magnify zoom <in|out>";
+    echo -e "magnify reset_zoom";
+}
+
+case $1 in
+    "zoom") zoom $2 ;;
+    "reset_zoom") reset_zoom ;;
+    *) usage ;;
+esac

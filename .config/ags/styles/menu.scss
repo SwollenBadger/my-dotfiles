@@ -1,0 +1,389 @@
+.confirmation {
+    .confirmation-body {
+        @include window;
+        margin-top: 6rem;
+        border-radius: $radius-large;
+        .title-body {
+            margin-bottom: $large-gap;
+            border-radius: $radius-medium;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            padding: 1.5rem;
+            .title {
+                font-size: 1.5rem;
+                margin-bottom: $medium-gap;
+            }
+            .desc {
+                font-size: 1.2rem;
+                font-weight: 400;
+            }
+        }
+        .confirmation-button {
+            button {
+                padding: $large-gap;
+                border-radius: $radius-medium;
+                background-color: $charcoal;
+                label {
+                    font-size: 1rem;
+                    color: $text;
+                }
+            }
+            .confirm {
+                &:hover {
+                    background-color: rgba($color: $red, $alpha: 1);
+                    label {
+                        color: $charcoal;
+                    }
+                }
+            }
+            .cancel {
+                &:hover {
+                    background-color: rgba($color: $yellow, $alpha: 1);
+                    label {
+                        color: $charcoal;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.menu {
+    .menu-holder {
+        @include window;
+        border-radius: $radius-large + 0.2;
+        padding: $small-gap;
+        min-width: 26rem;
+        .profile {
+            @include window($bg-color: $base);
+            border: 0.1rem solid $charcoal;
+            box-shadow: unset;
+            border-radius: $radius-large;
+            padding: $large-gap * 1.5;
+            .photo {
+                background-color: $mauve;
+                border-radius: 50%;
+                min-width: 6.4rem;
+                min-height: 6rem;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                margin-right: $large-gap * 2.5;
+            }
+            .info {
+                .user {
+                    font-size: 1.3rem;
+                    margin-bottom: $small-gap;
+                }
+                .uptime {
+                    font-style: italic;
+                }
+                .actions {
+                    margin-top: $large-gap;
+                    .action {
+                        padding: $small-gap * 1.3;
+                        border-radius: $radius-small;
+                        background-color: $charcoal;
+                        margin-right: $medium-gap;
+                    }
+                    .logout {
+                        background-color: $yellow;
+                        label {
+                            color: $mantle;
+                        }
+                        &:hover {
+                            background-color: darken($yellow, 20%);
+                        }
+                    }
+                    .folder {
+                        background-color: $sapphire;
+                        label {
+                            color: $mantle;
+                        }
+                        &:hover {
+                            background-color: darken($sapphire, 20%);
+                        }
+                    }
+                }
+            }
+            .hardware {
+                border-radius: $radius-large;
+                margin-top: $large-gap * 2;
+                .hw-item {
+                    label {
+                        font-size: 1.1rem;
+                    }
+                }
+                .cpu-size {
+                    color: $sky;
+                }
+                .ram-size {
+                    color: $teal;
+                }
+                .disk-size {
+                    color: $sapphire;
+                }
+            }
+        }
+        .powermenu {
+            @include window($bg-color: $base);
+            border: 0.1rem solid $charcoal;
+            box-shadow: unset;
+            border-radius: $radius-large;
+            margin-right: $small-gap;
+            .power-button {
+                padding: $medium-gap;
+                border-radius: $radius-small + 0.2;
+                &:hover {
+                    label {
+                        color: $charcoal;
+                    }
+                    &.shutdown {
+                        background-color: $red;
+                        label {
+                            color: $charcoal;
+                        }
+                    }
+                    &.reboot {
+                        background-color: $yellow;
+                        label {
+                            color: $charcoal;
+                        }
+                    }
+                    &.suspend {
+                        background-color: $green;
+                        label {
+                            color: $charcoal;
+                        }
+                    }
+                    &.lock {
+                        background-color: $sky;
+                        label {
+                            color: $charcoal;
+                        }
+                    }
+                    &.hibernate {
+                        background-color: $blue;
+                        label {
+                            color: $charcoal;
+                        }
+                    }
+                    &.logout {
+                        background-color: $sapphire;
+                        label {
+                            color: $charcoal;
+                        }
+                    }
+                }
+                label {
+                    font-size: 1.6rem;
+                }
+                &.shutdown {
+                    label {
+                        color: $red;
+                    }
+                }
+                &.reboot {
+                    label {
+                        color: $yellow;
+                    }
+                }
+                &.suspend {
+                    label {
+                        color: $green;
+                    }
+                }
+                &.lock {
+                    label {
+                        color: $sky;
+                    }
+                }
+                &.hibernate {
+                    label {
+                        color: $blue;
+                    }
+                }
+                &.logout {
+                    label {
+                        color: $sapphire;
+                    }
+                }
+            }
+        }
+        .app-menu {
+            @include window($bg-color: $base);
+            padding: $medium-gap;
+            border-radius: $radius-large;
+            border: 0.1rem solid $charcoal;
+            box-shadow: unset;
+            min-width: 4rem;
+            label {
+                font-size: 1.6rem;
+                color: $peach;
+            }
+            &:hover {
+                background-color: $peach;
+                label {
+                    color: $charcoal;
+                }
+            }
+        }
+        .media {
+            padding: $large-gap;
+            .media-header {
+                margin: $large-gap 0;
+                .title {
+                    font-size: 1.2rem;
+                }
+            }
+            .media-body {
+                min-height: 35rem;
+                .placeholder {
+                    min-height: 25rem;
+                    font-size: 1rem;
+                }
+                .player {
+                    border-radius: $radius-large;
+                    background-color: $base;
+                    padding: $large-gap;
+                    border: 0.1rem solid $charcoal;
+                    margin-top: $large-gap;
+                    .img {
+                        min-width: 6rem;
+                        min-height: 6rem;
+                        background-size: cover;
+                        background-position: center;
+                        border-radius: $radius-large;
+                        margin-right: $medium-gap;
+                        border: 0.1rem solid $base;
+                    }
+                    .title {
+                        font-size: 1.2em;
+                    }
+                    .artist {
+                        font-size: 1.1em;
+                        color: $mauve;
+                    }
+                    scale {
+                        &.position {
+                            padding: 0;
+                            margin-bottom: $xtra-large-gap;
+                            trough {
+                                min-height: 0.7rem;
+                                background-color: $crust;
+                                border-radius: $radius-large;
+                            }
+                            highlight {
+                                background-color: $mauve;
+                                min-height: 0.7rem;
+                                border-radius: $radius/2;
+                            }
+                            slider {
+                                background-color: $mauve;
+                                border-radius: 50%;
+                                box-shadow: $shadow;
+                                min-height: 1rem;
+                                min-width: 1rem;
+                            }
+                            button {
+                                min-height: 1em;
+                                min-width: 1em;
+                                padding: 0.3em;
+                                &.play-pause {
+                                    margin: 0 0.3em;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .notifications {
+        @include window;
+        min-width: 26rem;
+        border-radius: $radius-large;
+        .notification-header {
+            margin: $medium-gap 0;
+            padding-left: $medium-gap;
+            button {
+                border-radius: $radius-medium;
+                background-color: $base;
+                min-width: 2.5rem;
+                min-height: 2.5rem;
+                border: 0.1rem solid $charcoal;
+                label {
+                    font-size: 1.2rem;
+                }
+                &:hover {
+                    background-color: $charcoal;
+                }
+                &.dnd-btn {
+                    margin-right: $medium-gap;
+                    &.dnd {
+                        background-color: $charcoal;
+                    }
+                }
+            }
+        }
+        .placeholder {
+            min-height: 35rem;
+        }
+        .notification-body {
+            min-height: 50rem;
+            .notification-holder {
+                .notification-item {
+                    @include window($bg-color: $base);
+                    margin: 0;
+                    margin-bottom: $large-gap;
+                    min-width: 10rem;
+                    .notification-content {
+                        .close-item {
+                            background-color: $charcoal;
+                            padding: $small-gap;
+                        }
+                        .summary {
+                            font-size: 1rem;
+                        }
+                        .body {
+                            font-weight: 400;
+                        }
+                        .actions {
+                            margin-top: $small-gap;
+                            .action-btn {
+                                border-radius: $radius;
+                                background-color: $charcoal;
+                                padding: $medium-gap;
+                                &:hover {
+                                    background-color: $peach;
+                                    label {
+                                        color: $charcoal;
+                                    }
+                                }
+                            }
+                        }
+                        .time {
+                            margin-bottom: $medium-gap;
+                            font-size: 0.8rem;
+                            font-style: italic;
+                            color: rgba($color: $text, $alpha: 0.5);
+                        }
+                    }
+                    .close-item {
+                        margin-left: $small-gap;
+                        background-color: $charcoal;
+                        padding: $xtra-small-gap;
+                        border-radius: 50%;
+                        &:hover {
+                            background-color: $red;
+                            label {
+                                color: $charcoal;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,162 @@
+@mixin toggleButton($color: $lavender) {
+    background-color: $base;
+    border-radius: $radius-medium;
+    transition: 0.3s;
+    border: 0.1rem solid $charcoal;
+    padding: $large-gap 0;
+    &:hover {
+        background-color: $color;
+        label {
+            color: $charcoal;
+        }
+    }
+    .icon {
+        font-size: 1.6rem;
+    }
+    &.active {
+        background-color: $color;
+        &:hover {
+            background-color: darken($color, 5%);
+        }
+        label {
+            color: $charcoal;
+        }
+    }
+}
+
+.network-quick-settings {
+    .settings {
+        @include window;
+        min-width: 25rem;
+        border-radius: $radius-large;
+        .settings-toggle {
+            min-height: 4rem;
+            .wifi-toggle {
+                @include toggleButton($color: $flamingo);
+            }
+            .bluetooth-toggle {
+                @include toggleButton($color: $pink);
+            }
+        }
+        .password {
+            @include window($bg-color: $base);
+            margin: 0;
+            box-shadow: unset;
+            .input {
+                padding: $large-gap * 1.5;
+                padding-left: $large-gap;
+                border-width: 0.1rem;
+                border-style: solid;
+                border-color: $charcoal;
+                margin: $large-gap 0;
+                border-radius: $radius-large;
+            }
+            .action {
+                .connect {
+                    background-color: $green;
+                    padding: $medium-gap;
+                    margin-right: $medium-gap;
+                    border-radius: $radius-medium;
+                    label {
+                        color: $mantle;
+                    }
+                    &:hover {
+                        background-color: darken($green, 20%);
+                    }
+                }
+                .cancel {
+                    background-color: $red;
+                    padding: $medium-gap;
+                    border-radius: $radius-medium;
+                    label {
+                        color: $mantle;
+                    }
+                    &:hover {
+                        background-color: darken($red, 20%);
+                    }
+                }
+            }
+        }
+        .list {
+            @include window($bg-color: $base);
+            box-shadow: unset;
+            margin: unset;
+            border: 0.1rem solid $charcoal;
+            .header {
+                padding-bottom: $medium-gap;
+                font-size: 1rem;
+                border-bottom: 0.1rem solid $charcoal;
+                .title {
+                    margin-right: $medium-gap;
+                }
+                .btn {
+                    padding: $small-gap;
+                    border-radius: $radius-small + 0.2;
+                }
+            }
+            .scroll {
+                min-height: 2.5rem * 8;
+            }
+            .item-bluetooth {
+                min-height: 2.5rem;
+                margin-top: $large-gap;
+                label {
+                    font-size: 1rem;
+                }
+                .switch {
+                    border-radius: 2.5rem;
+                    border: 0.1rem solid $charcoal;
+                    background-color: $pink;
+                    slider {
+                        min-width: 1rem;
+                        min-height: 1rem;
+                        background-color: $charcoal;
+                        border-radius: 50%;
+                    }
+                    image {
+                        color: transparent;
+                    }
+                }
+            }
+            .access-point {
+                min-height: 2.5rem;
+                padding-left: $medium-gap;
+                border-radius: $radius-small;
+                margin-top: $large-gap;
+                label {
+                    font-size: 1rem;
+                }
+                &:hover {
+                    background-color: $flamingo;
+                    label {
+                        color: $charcoal;
+                    }
+                }
+            }
+        }
+        .wifi-list {
+            .header {
+                .btn {
+                    &:hover {
+                        background-color: $flamingo;
+                        label {
+                            color: $charcoal;
+                        }
+                    }
+                }
+            }
+        }
+        .bluetooth-list {
+            .header {
+                .btn {
+                    &:hover {
+                        background-color: $pink;
+                        label {
+                            color: $charcoal;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

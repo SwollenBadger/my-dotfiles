@@ -1,0 +1,30 @@
+#!/bin/sh
+
+function focus() {
+    ACTIVE_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .x')
+
+    if [ "$1" == "left" ]; then
+        monitor_position_operator="<";
+        local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id " | tail -n 1)
+    else
+        monitor_position_operator=">";
+        local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id " | head -n 1)
+    fi
+
+    hyprctl dispatch focusmonitor $next_active_monitor
+}
+
+function handle() {
+    case $1 in
+        monitoradded*)
+            ~/.local/bin/hypr/wallpaper cycle ;;
+    esac
+}
+
+case "$1" in
+    "handle")
+        socat - "UNIX-CONNECT:/tmp/hypr/${HYPRLAND_INSTANCE_SIGNATURE}/.socket2.sock" | while read -r line; do handle "$line"; done; ;;
+    "focus")
+        focus $2 ;;
+esac
+

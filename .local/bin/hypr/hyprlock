@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if [[ -z "$(pidof hyprlock)" ]]; then
+    pidof hyprlock || pamixer -m; hyprlock && loginctl unlock-session 
+fi

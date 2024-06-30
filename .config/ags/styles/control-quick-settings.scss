@@ -1,0 +1,153 @@
+@mixin settings($color: $lavender) {
+    background-color: $base;
+    border-radius: $radius-medium;
+    transition: 0.3s;
+    border: 0.1rem solid $charcoal;
+    &:hover {
+        background-color: $charcoal;
+    }
+    .lists {
+        @include window;
+        margin: $large-gap * 1.3;
+        border-radius: $radius-large;
+        .list {
+            padding: $medium-gap;
+            border-radius: $radius;
+            &.setting {
+                margin-top: $medium-gap;
+                background-color: $charcoal;
+                &:hover {
+                    background-color: $color;
+                    label {
+                        color: $charcoal;
+                    }
+                }
+            }
+            &:hover {
+                background-color: $charcoal;
+            }
+        }
+        .app-list {
+            &.muted {
+                .slider {
+                    highlight {
+                        background-color: rgba($color: $lavender, $alpha: 0.6);
+                    }
+                    slider {
+                        background-color: rgba($color: $lavender, $alpha: 1);
+                    }
+                }
+                .icon {
+                    &:hover {
+                        color: rgba($color: $lavender, $alpha: 0.6);
+                        label {
+                            color: $charcoal;
+                        }
+                    }
+                    label {
+                        color: rgba($color: $lavender, $alpha: 0.6);
+                        font-size: 2rem;
+                    }
+                }
+            }
+            margin-top: 1rem;
+            &:first-child {
+                margin-top: 0;
+            }
+            .description {
+                font-size: 1rem;
+            }
+            .slider {
+                margin-top: $medium-gap;
+            }
+            .icon {
+                padding: $medium-gap $medium-gap * 2 $medium-gap $medium-gap *
+                    1.5;
+                background-color: $charcoal;
+                margin-right: $medium-gap;
+                border-radius: $radius-large;
+                &:hover {
+                    background-color: $color;
+                    label {
+                        color: $charcoal;
+                    }
+                }
+                label {
+                    color: $color;
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+    &.muted {
+        .toggle {
+            &:hover {
+                background-color: rgba($color: $lavender, $alpha: 0.6);
+            }
+            label {
+                color: rgba($color: $lavender, $alpha: 0.6);
+            }
+        }
+        .slider {
+            highlight {
+                background-color: rgba($color: $lavender, $alpha: 0.6);
+            }
+            slider {
+                background-color: rgba($color: $lavender, $alpha: 1);
+            }
+        }
+    }
+    .toggle {
+        min-width: 4rem;
+        min-height: 4rem;
+        border-radius: $radius-medium;
+        margin-right: $large-gap;
+        &:hover {
+            background-color: $color;
+            label {
+                color: $charcoal;
+            }
+        }
+        label {
+            color: $color;
+            font-size: 2rem;
+        }
+    }
+    .slider {
+        margin-right: $large-gap;
+        trough {
+            background-color: $crust;
+            border-radius: $radius;
+        }
+        highlight {
+            min-height: 0.8rem;
+            background-color: $color;
+            border-radius: $radius;
+        }
+        slider {
+            min-height: 1.2rem;
+            min-width: 1.2rem;
+            background-color: $color;
+            border-radius: 50%;
+            box-shadow: $shadow;
+        }
+    }
+}
+
+.control-quick-settings {
+    .settings {
+        @include window;
+        min-width: 25rem;
+        border-radius: $radius-large * 1.3;
+        margin-bottom: 8rem;
+        .speaker-control {
+            @include settings($color: $sapphire);
+        }
+        .microphone-control {
+            @include settings($color: $sky);
+        }
+        .brightness-control {
+            @include settings($color: $teal);
+        }
+    }
+}

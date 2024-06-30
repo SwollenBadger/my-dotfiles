@@ -1,0 +1,42 @@
+.calendar-weather {
+    .holder {
+        @include window;
+        border-radius: $radius-large;
+        .calendar {
+            padding: $medium-gap;
+            .button {
+                background-color: $base;
+            }
+            &.header {
+                color: $mauve;
+            }
+            &:indeterminate {
+                color: rgba($color: $lavender, $alpha: 0.5);
+            }
+            &:selected {
+                color: $peach;
+            }
+            &.highlight {
+                color: $blue;
+            }
+        }
+        .weather {
+            padding: 0 $large-gap 0 0;
+            border-right: 0.1rem solid $charcoal;
+            min-width: 15rem;
+            .time {
+                font-size: 2.5rem;
+            }
+            .weather-info {
+                margin-top: $medium-gap;
+                .weather-data {
+                    font-size: 1rem;
+                    margin-top: $large-gap;
+                }
+            }
+            .date {
+                font-style: italic;
+            }
+        }
+    }
+}

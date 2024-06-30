@@ -1,0 +1,36 @@
+* {
+    min-height: 0;
+    font-family:
+        JetBrainsMono NFP Medium,
+        Monospace;
+    font-weight: Bold;
+    border: none;
+    border-radius: 0px;
+    box-shadow: unset;
+    background-image: unset;
+    background-color: transparent;
+    text-shadow: unset;
+    color: $text;
+    font-size: 0.9rem;
+}
+
+tooltip {
+    @include window;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+    background-color: unset;
+    box-shadow: unset;
+    transition: 0.3s;
+    &:active {
+        box-shadow: unset;
+        background-image: unset;
+    }
+    &:focus {
+        box-shadow: unset;
+        background-image: unset;
+    }
+}

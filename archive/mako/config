@@ -1,0 +1,69 @@
+# ------------- Notificication ------------- #
+on-notify=exec mpv --no-video ~/.config/mako/ringtones/f1.ogg
+on-button-left=exec makoctl menu -n "$id" rofi -dmenu -theme ~/.config/rofi/rofi-notificationcxt.rasi && makoctl dismiss -g -a 
+on-touch=exec makoctl menu -n "$id" rofi -dmenu -theme ~/.config/rofi/rofi-notificationcxt.rasi && makoctl dismiss -g -a 
+on-button-right=dismiss
+
+anchor=top-center
+default-timeout=4000
+max-icon-size=42
+icon-path=/usr/share/icons/Papirus-Dark
+layer=overlay
+
+width=350
+height=175
+padding=18,12
+border-radius=12
+
+background-color=#11111b
+text-color=#b4befe
+border-color=#303446
+border-size=1
+progress-color=source #313244
+
+[urgency=critical]
+border-color=#f38ba8
+default-timeout=8000
+
+[mode=do-not-disturb]
+invisible=1
+on-notify=none
+
+[app-name=brightness-osd]
+invisible=0
+on-notify=none
+format=<span rise='-10pt'><b>%s</b></span>\n<span rise='-20pt'>%b</span>
+max-icon-size=52
+font=JetBrainsMono Nerd Font 13
+text-color=#FAC092
+text-alignment=left
+icon-location=left
+anchor=bottom-center
+outer-margin=0,0,100,0
+padding=30,0,30,20
+
+[app-name=audio-osd]
+invisible=0
+on-notify=none
+format=<span rise='-10pt'><b>%s</b></span>\n<span rise='-20pt'>%b</span>
+max-icon-size=52
+font=JetBrainsMono Nerd Font 13
+text-color=#9BC1F7
+text-alignment=left
+icon-location=left
+anchor=bottom-center
+outer-margin=0,0,100,0
+padding=30,0,30,20
+
+[app-name=mic-osd]
+invisible=0
+on-notify=none
+format=<span rise='-10pt'><b>%s</b></span>\n<span rise='-20pt'>%b</span>
+max-icon-size=52
+font=JetBrainsMono Nerd Font 13
+text-color=#A2D1E7
+text-alignment=left
+icon-location=left
+anchor=bottom-center
+outer-margin=0,0,100,0
+padding=30,0,30,20

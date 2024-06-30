@@ -1,0 +1,125 @@
+.module-start {
+    .menu-btn {
+        border-radius: 0.7rem;
+        background-color: $mauve;
+        min-height: 1.8rem;
+        min-width: 1.8rem;
+        margin-right: $medium-gap;
+        padding: 0;
+        &:hover {
+            border-radius: 50%;
+            background-image: linear-gradient(90deg, $sapphire, $mauve);
+            box-shadow: 0 0 0 0.15rem $mauve;
+        }
+
+        .menu-icon {
+            color: $base;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+    }
+
+    .notification-counter {
+        color: $lavender;
+        margin-right: $medium-gap;
+    }
+
+    .workspaces {
+        background-color: $base;
+        margin-right: $medium-gap;
+        min-height: 1.7rem;
+        border-radius: 0.7rem;
+        border: 0.1rem solid $charcoal;
+        .workspace-item {
+            margin: 0;
+            min-width: 1.7rem;
+            border-radius: 0.7rem;
+            &:hover {
+                label {
+                    color: $mauve;
+                }
+            }
+            label {
+                color: rgba($color: $lavender, $alpha: 0.5);
+                transition: 0.3s;
+                font-size: 0.8rem;
+            }
+            &.active {
+                background-color: $mauve;
+                label {
+                    color: $mantle;
+                    margin-top: 0rem;
+                }
+            }
+            &.occupied:not(.active) {
+                &:hover {
+                    label {
+                        color: $mauve;
+                    }
+                }
+                label {
+                    color: rgba($color: $lavender, $alpha: 1);
+                }
+            }
+        }
+    }
+
+    .updater {
+        margin-right: $medium-gap;
+        color: $blue;
+        font-size: 1rem;
+    }
+
+    .connected-bluetooth {
+        .separator {
+            margin-right: $medium-gap;
+            color: $lavender;
+            font-size: 1.1rem;
+        }
+        .bluetooth-device {
+            margin-right: $medium-gap;
+            margin-left: $xtra-small-gap;
+            color: $blue;
+            font-size: 1rem;
+        }
+    }
+
+    // .cpu {
+    //     color: $teal;
+    //     margin-right: $medium-gap;
+    //     .cpu-size {
+    //         color: $teal;
+    //         margin-right: $small-gap;
+    //     }
+    //     .icon {
+    //         color: $teal;
+    //         font-size: 1.2rem;
+    //     }
+    // }
+
+    // .ram {
+    //     color: $sky;
+    //     margin-right: $medium-gap;
+    //     .ram-size {
+    //         color: $sky;
+    //         margin-right: $small-gap;
+    //     }
+    //     .icon {
+    //         color: $sky;
+    //         font-size: 1.2rem;
+    //     }
+    // }
+
+    // .disk {
+    //     color: $sapphire;
+    //     margin-right: $medium-gap;
+    //     .disk-size {
+    //         color: $sapphire;
+    //         margin-right: $small-gap;
+    //     }
+    //     .icon {
+    //         color: $sapphire;
+    //         font-size: 1.2rem;
+    //     }
+    // }
+}

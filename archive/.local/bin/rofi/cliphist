@@ -1,0 +1,11 @@
+#!/bin/bash
+
+killall rofi \
+    || cliphist list\
+    | rofi -dmenu -p ' '\
+    -theme ~/.config/rofi/global.rasi\
+    -theme-str 'configuration {show-icons:false;font: "JetBrainsMono Nerd Font Medium 10";}'\
+    -theme-str "window {width: 25%;}"\
+    -theme-str "listview {lines: 4;}"\
+    -theme-str "element {padding: 12px; margin: 4px;}"\
+    | cliphist decode | wl-copy

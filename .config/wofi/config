@@ -1,0 +1,7 @@
+width = 30%
+matching = fuzzy
+term = foot
+allow_images = true
+location = top
+prompt = search...
+hide_scroll = true

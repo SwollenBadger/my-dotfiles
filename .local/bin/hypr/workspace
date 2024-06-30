@@ -1,0 +1,57 @@
+#!/bin/bash
+
+function toworkspace() {
+    active=$(hyprctl -j monitors | jq --raw-output '.[] | select(.focused==true).specialWorkspace.name | split(":") | if length > 0 then .[1] else "" end')
+
+    if [[ ${#active} -gt 0 ]]; then
+        hyprctl dispatch togglespecialworkspace $active 
+    fi
+
+    hyprctl dispatch workspace $1
+}
+
+function move_currentworkspace_to_monitor() {
+    ACTIVE_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .x')
+
+    if [[ "$1" != "left" && "$1" != "right" ]]; then
+        echo "Invalid position"
+        exit 0
+    fi
+
+    if [ "$1" == "left" ]; then
+        monitor_position_operator="<";
+        local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id " | tail -n 1)
+    else
+        monitor_position_operator=">";
+        local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $ACTIVE_MONITOR) | .id " | head -n 1)
+    fi
+
+    hyprctl dispatch movecurrentworkspacetomonitor $next_active_monitor
+    hyprctl dispatch focusmonitor $next_active_monitor
+}
+
+function tidy_workspace() {
+    MAIN_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.x == 0) | .id')
+    ACTIVE_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .x')
+    local next_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x > $ACTIVE_MONITOR) | .id " | head -n 1)
+    local prev_active_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x < $ACTIVE_MONITOR) | .id " | head -n 1)
+
+    hyprctl focusmonitor $MAIN_MONITOR
+    hyprctl dispatch moveworkspacetomonitor 5 $next_active_monitor
+    hyprctl dispatch moveworkspacetomonitor 6 $next_active_monitor
+    hyprctl dispatch moveworkspacetomonitor 7 $next_active_monitor
+    hyprctl dispatch moveworkspacetomonitor 8 $next_active_monitor
+    hyprctl dispatch moveworkspacetomonitor 9 $next_active_monitor
+}
+
+case "$1" in
+    "toworkspace")
+        toworkspace $2
+        ;;
+    "tidy_workspace")
+        tidy_workspace
+        ;;
+    "move_currentworkspace_to_monitor")
+        move_currentworkspace_to_monitor $2
+        ;;
+esac

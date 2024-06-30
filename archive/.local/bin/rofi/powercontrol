@@ -1,0 +1,87 @@
+#!/bin/bash
+
+uptime="Uptime: `uptime -p | sed -e 's/up //g'`"
+hostname=`hostname`
+
+confirm="Confirm"
+cancel="Cancel"
+
+is_runnning_apps=$(hyprctl clients -j | jq -r ".[] | .class")
+
+function menu_dialog() {
+    # local shutdown_confirmation=`killall rofi || echo -e "$confirm\n$cancel" | rofi -dmenu -theme ~/.config/rofi/rofi-powerconfirm.rasi -mesg "<span><big>Are you sure you want to <b>$1</b> your PC?</big></span>" -theme-str "message{background-image: url('~/.config/rofi/imgs/$2');}" -theme-str "textbox-custom{expand:false;placeholder-markup:true;placeholder:'<span>$uptime</span>';}"`
+    local menu_confirmation=`killall rofi || echo -e "$confirm\n$cancel" | rofi -dmenu -theme ~/.config/rofi/rofi-powerconfirm.rasi -mesg "<span>$uptime&#x0a;&#x0a;</span><big>Are you sure you want to&#x0a;<b>$1</b> your PC?</big>" -theme-str "message{background-image: url(\"~/.config/rofi/imgs/$2\",width);}"`
+
+    if [[ $menu_confirmation == $confirm ]]; then
+        return 0
+    elif [[ $menu_confirmation == $cancel ]]; then
+        return 1
+    else
+        echo "exit"
+        exit 0
+    fi
+}
+
+function shutdown_with_confirm() {
+    menu_dialog "Shutdown" "doodle2.jpg"
+
+    if [[ $? < 1 ]]; then
+        systemctl poweroff
+    fi
+
+    exit 0
+}
+
+function reboot_with_confirm() {
+    menu_dialog "Reboot" "doodle3.jpg"
+
+    if [[ $? < 1 ]]; then
+        systemctl reboot
+    fi
+
+    exit 0
+}
+
+function suspend_with_confirm() {
+    menu_dialog "Suspend" "doodle4.jpg"
+
+    if [[ $? < 1 ]]; then
+        systemctl suspend
+    fi
+
+    exit 0
+}
+
+function hiberante_with_confirm() {
+    menu_dialog "Hibernate" "doodle5.jpg"
+
+    if [[ $? < 1 ]]; then
+        systemctl hibernate
+    fi
+
+    exit 0
+}
+
+function logout_with_confirm() {
+    menu_dialog "Logout" "doodle6.jpg"
+
+    if [[ $? < 1 ]]; then
+        hyprctl dispatch exit 0
+    fi
+
+    exit 0
+}
+
+
+case "$1" in
+    "shutdown") shutdown_with_confirm
+        ;;
+    "reboot") reboot_with_confirm
+        ;;
+    "suspend") suspend_with_confirm
+        ;;
+    "hibernate") hiberante_with_confirm
+        ;;
+    "logout") logout_with_confirm
+        ;;
+esac
